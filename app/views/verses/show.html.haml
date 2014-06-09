@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Line one:
+  = @verse.line_one
+
+= link_to 'Edit', edit_verse_path(@verse)
+\|
+= link_to 'Back', verses_path

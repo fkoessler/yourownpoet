@@ -1,0 +1,7 @@
+%h1 Welcome to the poet
+
+%p The verse should show in here: {{verse}}
+
+= button_to 'New Verse'{"ng-model" = "fetchVerse"}
+
+= link_to "add new verse", new_api_verse_path
