@@ -2,6 +2,10 @@
 
 %p The verse should show in here: {{verse}}
 
+%ul
+  %li{"ng-repeat" => "verse in verses"}
+    %p {{verse.line_one}}
+
 %button{"ng-model" => "bla"} New Verse
 
 = link_to "add new verse", new_verse_path
