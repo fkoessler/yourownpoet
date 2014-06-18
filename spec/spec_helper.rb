@@ -14,7 +14,10 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+require 'rspec/rails'
 require 'factory_girl_rails'
+require 'shoulda/matchers'
 
 RSpec.configure do |config|
 

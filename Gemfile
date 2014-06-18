@@ -44,9 +44,9 @@ gem 'haml'
 gem 'haml-rails', :group => :development
 
 group :test do
-  gem 'factory_girl_rails'
-  gem 'rspec-rails', '~> 3.0.1'
-  gem 'shoulda-matchers'
+  gem 'factory_girl_rails', require: false
+  gem 'rspec-rails', '~> 3.0.1', require: false
+  gem 'shoulda-matchers', require: false
 end
 
 gem 'angularjs-rails'
