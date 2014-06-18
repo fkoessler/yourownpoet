@@ -14,7 +14,7 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-
+require "rails/all"
 require 'rspec/rails'
 require 'factory_girl_rails'
 require 'shoulda/matchers'
