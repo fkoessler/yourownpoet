@@ -43,9 +43,10 @@ gem 'haml'
 # Get Haml when use the scaffold functions
 gem 'haml-rails', :group => :development
 
-group :development, :test do
+group :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.0.1'
+  gem 'shoulda-matchers'
 end
 
 gem 'angularjs-rails'
