@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  resources :verses, only: [:show, :new, :create]
+  namespace :api do
+    resources :verses, :defaults => { :format => 'json' }
+  end
 
   
   # The priority is based upon order of creation: first created -> highest priority.
