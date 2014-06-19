@@ -1,3 +1,5 @@
-fix verse controller spec
-fix verse controller
-angular: update database through json api
+create index view that shows verses list
+create refresh button (angular)
+add form to add verse through angular
+add button to delete form
+add form to update verse

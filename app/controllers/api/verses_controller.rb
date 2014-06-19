@@ -1,4 +1,6 @@
 class Api::VersesController < ApplicationController
+  
+  protect_from_forgery with: :null_session
   before_action :set_verse, only: [:show, :edit, :update, :destroy]
   respond_to :json
 

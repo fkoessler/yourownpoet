@@ -1,11 +1,9 @@
-%h1 Welcome to the poet
+%h1 Verses list:
 
-%p The verse should show in here: {{verse}}
+%div{"ng-controller" => "VerseCtrl"}
 
-%ul
-  %li{"ng-repeat" => "verse in verses"}
-    %p {{verse.line_one}}
+  %ul
+    %li{"ng-repeat" => "verse in verses"}
+      %p {{verse.line_one}}
 
-%button{"ng-model" => "bla"} New Verse
-
-= link_to "add new verse", new_verse_path
+  = render 'new_verse_form'
