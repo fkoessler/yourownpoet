@@ -24,11 +24,16 @@ RSpec.describe Api::VersesController, :type => :controller do
   # Verse. As you add validations to Verse, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {id: 1, line_one: "A beautiful verse I stand"}
+    { id: 1,
+      line_one: "A beautiful verse I stand"
+    }
   }
 
   let(:invalid_attributes) {
-    {id: 1, line_one: ""}
+    {
+      id: 1,
+      line_one: ""
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -39,7 +44,7 @@ RSpec.describe Api::VersesController, :type => :controller do
   describe "GET index" do
     it "assigns all verses as @verses" do
       @verse = create(:verse)
-      get :index, format: :json
+      get :index, {format: :json}, valid_session
       expect(assigns(:verses)).to eq([@verse])
     end
   end
@@ -47,44 +52,29 @@ RSpec.describe Api::VersesController, :type => :controller do
   describe "GET show" do
     it "should return status 200 when viewing existing verse" do
       @verse = create(:verse)
-      get :show, {id: @verse.to_param, format: :json}
+      get :show, {id: @verse.to_param, format: :json}, valid_session
       expect(response).to have_http_status(200)
     end
 
     it "should return RecordNotFound Error when viewing non existing verse" do
       product_id = 9999
       assert_raises(ActiveRecord::RecordNotFound) do
-        get :show, id: product_id
+        get :show, {id: product_id}, valid_session
       end
     end
 
     it "assigns the requested verse as @verse" do
       @verse = create(:verse)
-      get :show, {:id => @verse.to_param, format: :json}
+      get :show, {:id => @verse.to_param, format: :json}, valid_session
       expect(assigns(:verse)).to eq(@verse)
     end
   end
 
-  #describe "GET new" do
-  #  it "assigns a new verse as @verse" do
-  #    get :new, {}, valid_session
-  #    expect(assigns(:verse)).to be_a_new(Verse)
-  #  end
-  #end
-
-  #describe "GET edit" do
-  #  it "assigns the requested verse as @verse" do
-  #    verse = Verse.create! valid_attributes
-  #    get :edit, {:id => verse.to_param}, valid_session
-  #    expect(assigns(:verse)).to eq(verse)
-  #  end
-  #end
-
   describe "POST create" do
-    describe "with valid params" do
+    context "with valid params" do
       it "creates a new Verse" do
         expect {
-          post :create, {:verse => valid_attributes, format: :json}, valid_session 
+          post :create, {verse: valid_attributes, format: :json}, valid_session
         }.to change(Verse, :count).by(1)
       end
 
@@ -100,12 +90,7 @@ RSpec.describe Api::VersesController, :type => :controller do
       end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved verse as verse" do
-        post :create, {:verse => invalid_attributes, format: :json}, valid_session
-        expect(assigns(:verse)).to be_a_new(Verse)
-      end
-
+    context "with invalid params" do
       it "returns a 422 unprocessable entity status code" do
         post :create, {:verse => invalid_attributes, format: :json}, valid_session
         expect(response).to have_http_status(422)
@@ -114,16 +99,17 @@ RSpec.describe Api::VersesController, :type => :controller do
   end
 
   describe "PUT update" do
-    describe "with valid params" do
+    context "with valid params" do
       let(:new_attributes) {
-        {id: 4, line_one: "This is my updated verse line"}
+        {line_one: "This is my updated verse line"}
       }
 
       it "updates the requested verse" do
         @verse = create(:verse)
+        request.accept = "application/json"
         put :update, {:id => @verse.to_param, :verse => new_attributes, format: :json}, valid_session
         @verse.reload
-        @verse.line_one.should eq("This is my updated verse line")
+        expect(@verse.line_one).to eq("This is my updated verse line")
       end
 
       it "assigns the requested verse as verse" do
@@ -135,12 +121,11 @@ RSpec.describe Api::VersesController, :type => :controller do
       it "returns a status ok status code 200" do
         @verse = create(:verse)
         put :update, {:id => @verse.to_param, :verse => valid_attributes, format: :json}, valid_session
-        #expect(response).to redirect_to(@verse)
         expect(response).to have_http_status(200)
       end
     end
 
-    describe "with invalid params" do
+    context "with invalid params" do
       it "assigns the verse as verse" do
         @verse = create(:verse)
         put :update, {:id => @verse.to_param, :verse => invalid_attributes, format: :json}, valid_session
@@ -150,7 +135,6 @@ RSpec.describe Api::VersesController, :type => :controller do
       it "returns a 422 unprocessable entity status code" do
         @verse = create(:verse)
         put :update, {:id => @verse.to_param, :verse => invalid_attributes, format: :json}, valid_session
-        #expect(response).to render_template("edit")
         expect(response).to have_http_status(422)
       end
     end
@@ -168,7 +152,6 @@ RSpec.describe Api::VersesController, :type => :controller do
       @verse = create(:verse)
       delete :destroy, {:id => @verse.to_param, format: :json}, valid_session
       expect(response).to have_http_status(200)
-      #expect(response).to redirect_to(verses_url)
     end
   end
 
