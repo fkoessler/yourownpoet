@@ -5,5 +5,6 @@
   %ul
     %li{"ng-repeat" => "verse in verses"}
       %p {{verse.line_one}}
+      %button{type: "button", "ng-click" => "deleteItem(verse)"} Delete this verse
 
   = render 'new_verse_form'

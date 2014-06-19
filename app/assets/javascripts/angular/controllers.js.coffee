@@ -17,6 +17,10 @@ verseApp.controller 'VerseCtrl', ['$scope', 'Verse', ($scope, Verse) ->
       console.log "Error" + response.status
       return
     return
+
+  $scope.deleteItem = (item) ->
+    index = $scope.verses.indexOf(item)
+    $scope.verses.splice(index,1)
 ]
 
 verseApp.factory 'Verse', ['$resource', ($resource ) ->
