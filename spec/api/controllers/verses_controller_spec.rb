@@ -106,7 +106,6 @@ RSpec.describe Api::VersesController, :type => :controller do
 
       it "updates the requested verse" do
         @verse = create(:verse)
-        request.accept = "application/json"
         put :update, {:id => @verse.to_param, :verse => new_attributes, format: :json}, valid_session
         @verse.reload
         expect(@verse.line_one).to eq("This is my updated verse line")
@@ -118,10 +117,10 @@ RSpec.describe Api::VersesController, :type => :controller do
         expect(assigns(:verse)).to eq(@verse)
       end
 
-      it "returns a status ok status code 200" do
+      it "returns a 204 no_content status code" do
         @verse = create(:verse)
         put :update, {:id => @verse.to_param, :verse => valid_attributes, format: :json}, valid_session
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(204)
       end
     end
 
@@ -148,7 +147,7 @@ RSpec.describe Api::VersesController, :type => :controller do
       }.to change(Verse, :count).by(-1)
     end
 
-    it "returns a status ok status code 200" do
+    it "returns a 200 ok status code" do
       @verse = create(:verse)
       delete :destroy, {:id => @verse.to_param, format: :json}, valid_session
       expect(response).to have_http_status(200)
