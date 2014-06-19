@@ -1,1 +1,13 @@
-add form to update verse (?)
+Run: Have a functionning poet: asks the 5 questions and builds a verse with only core features
+
+- scaffold IntroVerse, TraitVerse and MessageVerse
+- scaffold MessageCategory and TraitCategory
+- scaffold Questionnaire and Poem (non persistent models)
+- write tests for IntroVerse, TraitVerse and MessageVerse
+- write tests for MessageCategory and TraitCategory
+- write tests for Questionnaire
+- write tests for Poem
+
+- import tables
+
+- build forms for Questionnaire
