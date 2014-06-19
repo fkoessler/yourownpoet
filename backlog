@@ -1,5 +1,3 @@
-create index view that shows verses list
 create refresh button (angular)
-add form to add verse through angular
-add button to delete form
+add button to delete verse
 add form to update verse
