@@ -1,0 +1,2 @@
+class TraitCategory < Category
+end

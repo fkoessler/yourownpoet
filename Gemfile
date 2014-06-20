@@ -43,8 +43,12 @@ gem 'haml'
 # Get Haml when use the scaffold functions
 gem 'haml-rails', :group => :development
 
-group :test do
+# Test gems
+# Put factory)girl in development group so that test scaffolds are generated properly
+group :development, :test do
   gem 'factory_girl_rails', require: false
+end
+group :test do
   gem 'rspec-rails', '~> 3.0.1', require: false
   gem 'shoulda-matchers', require: false
 end

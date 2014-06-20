@@ -1,0 +1,2 @@
+class MessageVerse < Verse
+end

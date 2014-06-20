@@ -1,0 +1,2 @@
+class MessageCategory < Category
+end

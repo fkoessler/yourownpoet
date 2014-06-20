@@ -4,4 +4,8 @@ FactoryGirl.define do
   factory :verse do
     line_one "A beautiful verse I stand"
   end
+
+  factory :intro_verse, class: 'IntroVerse' do
+
+  end
 end

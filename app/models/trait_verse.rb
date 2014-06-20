@@ -1,0 +1,2 @@
+class TraitVerse < Verse
+end

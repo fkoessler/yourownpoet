@@ -1,0 +1,2 @@
+class IntroVerse < Verse
+end
