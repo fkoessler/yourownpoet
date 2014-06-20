@@ -6,8 +6,8 @@ class CreateVerses < ActiveRecord::Migration
       t.string :line_three
       t.string :line_four
       t.string :line_five
-      t.boolean :active
-      t.integer :sex
+      t.boolean :active, default: true
+      t.integer :sex, default: 0
       
       t.timestamps
     end

@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe IntroVerse, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a valid factory" do
+    expect(create(:intro_verse)).to be_valid
+  end
 end

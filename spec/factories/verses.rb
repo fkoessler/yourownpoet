@@ -8,4 +8,12 @@ FactoryGirl.define do
   factory :intro_verse, class: 'IntroVerse' do
 
   end
+
+  factory :trait_verse, class: 'TraitVerse' do
+
+  end
+
+  factory :message_verse, class: 'MessageVerse' do
+
+  end
 end

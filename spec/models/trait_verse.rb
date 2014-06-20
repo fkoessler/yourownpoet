@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe TraitVerse, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it "has a valid factory" do
+    expect(create(:trait_verse)).to be_valid
+  end
+
+  it { should belong_to(:trait_category) }
+
 end

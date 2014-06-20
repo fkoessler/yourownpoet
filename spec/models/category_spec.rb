@@ -1,5 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe Category, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it "has a valid factory" do
+    expect(create(:category)).to be_valid
+  end
+
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:active) }
+  it { should validate_presence_of(:sex) }
+  it { should validate_presence_of(:fill_the_blank) }
+
+  it "sex should default to 0" do
+    category = create(:category)
+    expect(category.sex).to eq(0)
+  end
+  it "active should default to true" do
+    category = create(:category)
+    expect(category.active).to be_true
+  end
+  it "fill_in_blank should default to false" do
+    category = create(:category)
+    expect(category.fill_in_blank).to be_false
+  end
+
+  it { should ensure_inclusion_of(:sex).in_range(0..2) }
+
 end

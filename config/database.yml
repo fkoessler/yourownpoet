@@ -9,8 +9,8 @@ default: &default
   pool: 5
   timeout: 5000
   encoding: unicode
-  username: postgres
-  password: fils2pute-
+  #username: postgres
+  #password: fils2pute-
 development:
   <<: *default
   database: yourownpoet-development
