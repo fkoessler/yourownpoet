@@ -1,6 +1,7 @@
 class CreateCategories < ActiveRecord::Migration
   def change
     create_table :categories do |t|
+      t.string :type
       t.string :name
       t.boolean :active, default: true
       t.integer :sex, default: 0

@@ -6,6 +6,6 @@ RSpec.describe TraitCategory, :type => :model do
     expect(create(:trait_category)).to be_valid
   end
 
-  it { should have_many(:trait_verse) }
-
+  it { should have_many(:trait_verses) }
+  
 end

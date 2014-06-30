@@ -6,6 +6,6 @@ RSpec.describe TraitVerse, :type => :model do
     expect(create(:trait_verse)).to be_valid
   end
 
-  it { should belong_to(:trait_category) }
+  it { should belong_to(:category) }
 
 end

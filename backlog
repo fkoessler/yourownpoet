@@ -1,7 +1,5 @@
 Run: Have a functionning poet: asks the 5 questions and builds a verse with only core features
 
-- write tests for IntroVerse, TraitVerse and MessageVerse
-- write tests for MessageCategory and TraitCategory
 - scaffold Questionnaire and Poem (non persistent models)
 - scaffold index controller
 - scaffold thePoet api controller

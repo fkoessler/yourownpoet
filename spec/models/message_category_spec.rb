@@ -6,6 +6,6 @@ RSpec.describe MessageCategory, :type => :model do
     expect(create(:message_category)).to be_valid
   end
 
-  it { should have_many(:message_verse) }
-
+  it { should have_many(:message_verses) }
+  
 end

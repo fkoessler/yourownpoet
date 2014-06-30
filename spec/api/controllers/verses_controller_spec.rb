@@ -25,14 +25,22 @@ RSpec.describe Api::VersesController, :type => :controller do
   # adjust the attributes here as well.
   let(:valid_attributes) {
     { id: 1,
-      line_one: "A beautiful verse I stand"
+      line_one: "About Jim I want you to hear",
+      line_two: "In Maine he lives all the year",
+      line_three: "His cousin that is he",
+      line_four: "That's just how he be",
+      line_five: "Now listen and give me your ear"
     }
   }
 
   let(:invalid_attributes) {
     {
       id: 1,
-      line_one: ""
+      line_one: "",
+      line_two: "",
+      line_three: "",
+      line_four: "",
+      line_five: ""
     }
   }
 

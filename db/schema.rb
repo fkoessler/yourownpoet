@@ -11,53 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620071033) do
+ActiveRecord::Schema.define(version: 20140620070849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: true do |t|
+    t.string   "type"
     t.string   "name"
-    t.boolean  "active"
-    t.integer  "sex"
-    t.boolean  "fill_the_blank"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "intro_verses", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "message_categories", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "message_verses", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "trait_categories", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "trait_verses", force: true do |t|
+    t.boolean  "active",         default: true
+    t.integer  "sex",            default: 0
+    t.boolean  "fill_the_blank", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "verses", force: true do |t|
+    t.string   "type"
     t.string   "line_one"
     t.string   "line_two"
     t.string   "line_three"
     t.string   "line_four"
     t.string   "line_five"
-    t.boolean  "active"
-    t.integer  "sex"
+    t.boolean  "active",      default: true
+    t.integer  "sex",         default: 0
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

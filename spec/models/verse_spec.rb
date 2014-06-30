@@ -11,8 +11,8 @@ RSpec.describe Verse, :type => :model do
   it { should validate_presence_of(:line_three) }
   it { should validate_presence_of(:line_four) }
   it { should validate_presence_of(:line_five) }
-  it { should validate_presence_of(:sex) }
-  it { should validate_presence_of(:active) }
+  #it { should validate_presence_of(:sex) }
+  #it { should validate_presence_of(:active) }
 
   it "sex should default to 0" do
     verse = create(:verse)
@@ -20,7 +20,7 @@ RSpec.describe Verse, :type => :model do
   end
   it "active should default to true" do
     verse = create(:verse)
-    expect(verse.active).to be_true
+    expect(verse.active).to be true
   end
 
   it { should ensure_inclusion_of(:sex).in_range(0..2) }

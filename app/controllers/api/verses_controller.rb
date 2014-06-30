@@ -60,6 +60,6 @@ class Api::VersesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def verse_params
-      params.require(:verse).permit(:line_one)
+      params.require(:verse).permit(:line_one, :line_two, :line_three, :line_four, :line_five, :active, :sex)
     end
 end

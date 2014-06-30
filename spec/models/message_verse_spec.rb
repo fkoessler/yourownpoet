@@ -6,6 +6,6 @@ RSpec.describe MessageVerse, :type => :model do
     expect(create(:message_verse)).to be_valid
   end
 
-  it { should belong_to(:message_category) }
+  it { should belong_to(:category) }
   
 end
