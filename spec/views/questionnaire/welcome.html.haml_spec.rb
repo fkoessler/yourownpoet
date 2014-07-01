@@ -9,7 +9,8 @@ RSpec.describe "questionnaire/welcome.html.haml", :type => :view do
 
   it "displays a submit button" do
     render
-    expect(rendered).to have_submit_button("Next")
+    #expect(rendered).to have_selector("input[type=submit][value='Next']")
+    expect(rendered).to have_button("Next")
   end
 
   pending "it should contain submit button to correct url"

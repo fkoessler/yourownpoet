@@ -1,2 +1,10 @@
-%h1 Questionnaire#welcome
-%p Find me in app/views/questionnaire/welcome.html.haml
+%h1 Welcome to the poet
+
+%form{"ng-submit" => "receiver_name()"}
+  %fieldset
+    %h2 Who do you want me to write the poem for?
+    %ol  
+      %li
+        %label{:for => "name"} Receiver name:
+        %input{:type => "text", :name => "receiver_name", :class => "text", "ng-model" => "questionnaire.receiver_name" }
+    %input{:type => "submit", :value => "Next", :class => "button"}
