@@ -14,14 +14,16 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require "rails/all"
-require 'rspec/rails'
+
+require 'rails/all'
+#Commented out this require because it is already required in rails_helper.rb
+#require 'rspec/rails'
+#require 'capybara/rails'
+require 'capybara/rspec'
 require 'factory_girl_rails'
 require 'shoulda/matchers'
-require 'capybara/rspec'
 
 RSpec.configure do |config|
-
   config.include FactoryGirl::Syntax::Methods
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
