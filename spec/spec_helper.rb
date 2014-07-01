@@ -18,6 +18,7 @@ require "rails/all"
 require 'rspec/rails'
 require 'factory_girl_rails'
 require 'shoulda/matchers'
+require 'capybara/rspec'
 
 RSpec.configure do |config|
 

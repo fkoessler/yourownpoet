@@ -51,6 +51,7 @@ end
 group :test do
   gem 'rspec-rails', '~> 3.0.1', require: false
   gem 'shoulda-matchers', require: false
+  gem 'capybara'
 end
 
 gem 'angularjs-rails'
