@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'questionnaire/welcome'
   get 'questionnaire/receiver_name'
   get 'questionnaire/location'
   get 'questionnaire/relationship'
   get 'questionnaire/trait'
   get 'questionnaire/message'
 
-  root 'questionnaire#receiver_name'
+  root 'questionnaire#welcome'
 
   namespace :api do
     resources :verses, :defaults => { :format => 'json' }

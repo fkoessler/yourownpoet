@@ -1,4 +1,8 @@
 class QuestionnaireController < ApplicationController
+
+  def welcome
+  end
+  
   def receiver_name
   end
 
