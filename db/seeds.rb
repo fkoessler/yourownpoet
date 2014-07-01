@@ -43,9 +43,9 @@ message_category_list.each do |type, name|
 end
 
 message_verse_list = [
-  [ "MessageVerse", "message_verse_list verse 1 line 1", "message_verse_list verse 1 line 2", "message_verse_list verse 1 line 3", "message_verse_list verse 1 line 4", "message_verse_list verse 1 line 5", 4 ],
-  [ "MessageVerse", "message_verse_list verse 2 line 1", "message_verse_list verse 2 line 2", "message_verse_list verse 2 line 3", "message_verse_list verse 2 line 4", "message_verse_list verse 2 line 5", 5 ],
-  [ "MessageVerse", "message_verse_list verse 3 line 1", "message_verse_list verse 3 line 2", "message_verse_list verse 3 line 3", "message_verse_list verse 3 line 4", "message_verse_list verse 3 line 5", 6 ]
+  [ "MessageVerse", "message verse 1 line 1", "message verse 1 line 2", "message verse 1 line 3", "message verse 1 line 4", "message verse 1 line 5", 4 ],
+  [ "MessageVerse", "message verse 2 line 1", "message verse 2 line 2", "message verse 2 line 3", "message verse 2 line 4", "message verse 2 line 5", 5 ],
+  [ "MessageVerse", "message verse 3 line 1", "message verse 3 line 2", "message verse 3 line 3", "message verse 3 line 4", "message verse 3 line 5", 6 ]
 ]
 message_verse_list.each do |type, line_one, line_two, line_three, line_four, line_five, category_id|
   MessageVerse.create( type: type, line_one: line_one, line_two: line_two, line_three: line_three, line_four: line_four, line_five: line_five, category_id: category_id)

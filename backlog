@@ -1,11 +1,8 @@
 Run: Have a functionning poet: asks the 5 questions and builds a verse with only core features
 
-- scaffold Questionnaire and Poem (non persistent models)
-- scaffold index controller
-- scaffold thePoet api controller
-- write tests for Questionnaire
-- write tests for Poem
 - write tests for index controller
 - write tests for thePoet api controller
+- write tests for Questionnaire
+- write tests for Poem
 
 - create database tables and input sample data..
