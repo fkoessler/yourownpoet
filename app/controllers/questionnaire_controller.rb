@@ -1,8 +1,5 @@
 class QuestionnaireController < ApplicationController
 
-  def welcome
-  end
-
   def questionnaire
     render layout: false
   end

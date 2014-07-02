@@ -1,10 +1,3 @@
-%h1 Verses list:
-
-%div{"ng-controller" => "VerseCtrl"}
-
-  %ul
-    %li{"ng-repeat" => "verse in verses"}
-      %p {{verse.line_one}}
-      %button{type: "button", "ng-click" => "deleteItem(verse)"} Delete this verse
-
-  = render 'new_verse_form'
+%div
+  %h1 The Poet
+  %div{"ui-view" => ""}

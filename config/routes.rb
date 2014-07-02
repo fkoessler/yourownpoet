@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'questionnaire/welcome'
+  # application homepage
+  get 'welcome/index'
+  root 'welcome#index'
+
+  # routes that return questionnaire forms
   get 'questionnaire/questionnaire'
   get 'questionnaire/receiver_name'
   get 'questionnaire/location'
@@ -8,8 +12,7 @@ Rails.application.routes.draw do
   get 'questionnaire/trait'
   get 'questionnaire/message'
 
-  root 'questionnaire#welcome'
-
+  # verse api routes
   namespace :api do
     resources :verses, :defaults => { :format => 'json' }
   end
