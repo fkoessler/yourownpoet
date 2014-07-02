@@ -2,14 +2,15 @@ require 'rails_helper'
 
 RSpec.describe "questionnaire/welcome.html.haml", :type => :view do
 
-  it "displays the receiverName input" do
+  before do
     render
+  end
+
+  it "displays the receiverName input" do
     expect(rendered).to have_field('receiver_name', :type => 'text')
   end
 
   it "displays a submit button" do
-    render
-    #expect(rendered).to have_selector("input[type=submit][value='Next']")
     expect(rendered).to have_button("Next")
   end
 
