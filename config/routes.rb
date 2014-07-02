@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'questionnaire/welcome'
+  get 'questionnaire/questionnaire'
   get 'questionnaire/receiver_name'
   get 'questionnaire/location'
   get 'questionnaire/relationship'

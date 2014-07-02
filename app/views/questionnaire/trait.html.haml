@@ -1,2 +1,9 @@
-%h1 Questionnaire#trait
-%p Find me in app/views/questionnaire/trait.html.haml
+/ questionnaire/trait.html.haml
+
+.form-group
+  %label{for: "trait"} Trait
+  %input.form-control{trait: "trait", "ng-model" => "formData.trait", type: "text"}
+
+.form-group
+  %a.btn{"ui-sref" => "questionnaire.message"}
+    Next

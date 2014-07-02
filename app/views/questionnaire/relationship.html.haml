@@ -1,2 +1,9 @@
-%h1 Questionnaire#relationship
-%p Find me in app/views/questionnaire/relationship.html.haml
+/ questionnaire/relationship.html.haml
+
+.form-group
+  %label{for: "relationship"} Relationship
+  %input.form-control{relationship: "relationship", "ng-model" => "formData.relationship", type: "text"}
+
+.form-group
+  %a.btn{"ui-sref" => "questionnaire.trait"}
+    Next

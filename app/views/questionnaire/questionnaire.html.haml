@@ -1,0 +1,28 @@
+#form-container
+  / the links to our nested states using relative paths
+  / add the active class if the state matches our ui-sref
+  #status-buttons.text-center
+    %a{"ui-sref" => ".receiver_name", "ui-sref-active" => "active"}
+      %span 1
+      Receiver Name
+    %a{"ui-sref" => ".location", "ui-sref-active" => "active"}
+      %span 2
+      Location
+    %a{"ui-sref" => ".relationship", "ui-sref-active" => "active"}
+      %span 4
+      Relationship
+    %a{"ui-sref" => ".trait", "ui-sref-active" => "active"}
+      %span 5
+      Trait
+    %a{"ui-sref" => ".message", "ui-sref-active" => "active"}
+      %span 6
+      Message
+
+  / use ng-submit to catch the form submission and use our Angular function
+
+  %form#questionnaire-form{"ng-submit" => "processForm()"}
+    / our nested state views will be injected here
+    #form-views{"ui-view" => ""}
+
+  / show our formData as it is being typed
+  %pre {{ formData }}

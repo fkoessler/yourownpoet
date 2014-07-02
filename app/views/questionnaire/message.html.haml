@@ -1,2 +1,7 @@
-%h1 Questionnaire#message
-%p Find me in app/views/questionnaire/message.html.haml
+/ questionnaire/message.html.haml
+
+.form-group
+  %label{for: "message"} Message
+  %input.form-control{message: "message", "ng-model" => "formData.message", type: "text"}
+
+%button.btn{type: "submit"} Submit
