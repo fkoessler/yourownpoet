@@ -15,4 +15,6 @@
 //= require turbolinks
 //= require angular
 //= require angular-resource
+//= require angular-animate
+//= require angular-ui-router.min
 //= require_tree .
