@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require angular
-//= require angular-ui-router.min
+//= require angular-ui-router
 //= require angular-animate
+//= require typeahead.bundle
 //= require_tree .
