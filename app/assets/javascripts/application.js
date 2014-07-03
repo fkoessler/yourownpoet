@@ -16,5 +16,5 @@
 //= require angular
 //= require angular-ui-router
 //= require angular-animate
-//= require typeahead.bundle
+//= require ui-bootstrap-custom-tpls-0.10.0
 //= require_tree .
