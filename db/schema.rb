@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620070849) do
+ActiveRecord::Schema.define(version: 20140703123707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20140620070849) do
     t.boolean  "active",         default: true
     t.integer  "sex",            default: 0
     t.boolean  "fill_the_blank", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relationships", force: true do |t|
+    t.string   "name"
+    t.string   "male_mirror"
+    t.string   "female_mirror"
+    t.integer  "category"
+    t.integer  "sex"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
