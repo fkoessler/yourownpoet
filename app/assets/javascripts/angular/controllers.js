@@ -69,7 +69,7 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
 
 function RelationshipsTypeaheadCtrl($scope, $http, limitToFilter) {
   $scope.relationships = function(relationshipName) {
-    return $http.get("/api/questionnaire/relationship?q="+relationshipName).then(function(response){
+    return $http.get("/api/questionnaire/relationship?search="+relationshipName).then(function(response){
       return limitToFilter(response.data, 15);
     });
   };
@@ -85,7 +85,7 @@ function TraitsTypeaheadCtrl($scope, $http, limitToFilter) {
 
 function MessagesTypeaheadCtrl($scope, $http, limitToFilter) {
   $scope.messages = function(messageName) {
-    return $http.get("/api/questionnaire/message?q="+messagegName).then(function(response){
+    return $http.get("/api/questionnaire/message?q="+messageName).then(function(response){
       return limitToFilter(response.data, 15);
     });
   };
