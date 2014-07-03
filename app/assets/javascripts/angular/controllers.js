@@ -1,7 +1,7 @@
 // app.js
 // create our angular app and inject ngAnimate and ui-router 
 // =============================================================================
-angular.module('questionnaireApp', ['ngAnimate', 'ui.router'])
+angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
 
 // configuring our routes 
 // =============================================================================
@@ -66,3 +66,27 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router'])
   };
   
 });
+
+function RelationshipsTypeaheadCtrl($scope, $http, limitToFilter) {
+  $scope.relationships = function(relationshipName) {
+    return $http.get("/api/questionnaire/relationship?q="+relationshipName).then(function(response){
+      return limitToFilter(response.data, 15);
+    });
+  };
+}
+
+function TraitsTypeaheadCtrl($scope, $http, limitToFilter) {
+  $scope.traits = function(traitName) {
+    return $http.get("/api/questionnaire/trait?q="+traitName).then(function(response){
+      return limitToFilter(response.data, 15);
+    });
+  };
+}
+
+function MessagesTypeaheadCtrl($scope, $http, limitToFilter) {
+  $scope.messages = function(messageName) {
+    return $http.get("/api/questionnaire/message?q="+messagegName).then(function(response){
+      return limitToFilter(response.data, 15);
+    });
+  };
+}

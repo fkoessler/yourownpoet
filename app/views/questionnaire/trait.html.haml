@@ -2,7 +2,8 @@
 
 .form-group
   %label{for: "trait"} Trait
-  %input.form-control{trait: "trait", "ng-model" => "formData.trait", type: "text"}
+  %div{"ng-controller" => "TraitsTypeaheadCtrl"}
+    %input{trait: "trait", "ng-model" => "formData.trait", type: "text", "typeahead" => "suggestion for suggestion in traits($viewValue)", autocomplete: "off"}
 
 .form-group
   %a.btn{"ui-sref" => "questionnaire.message"}

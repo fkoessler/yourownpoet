@@ -2,7 +2,7 @@
 
 .form-group
   %label{for: "receiver_name"} Receiver Name
-  %input.form-control{receiver_name: "reicever_name", "ng-model" => "formData.receiver_name", type: "text"}
+  %input{receiver_name: "reicever_name", "ng-model" => "formData.receiver_name", type: "text"}
 
 .form-group
   %a.btn{"ui-sref" => "questionnaire.location"}

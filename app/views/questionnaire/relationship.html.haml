@@ -2,7 +2,8 @@
 
 .form-group
   %label{for: "relationship"} Relationship
-  %input.form-control{relationship: "relationship", "ng-model" => "formData.relationship", type: "text"}
+  %div{"ng-controller" => "RelationshipsTypeaheadCtrl"}
+    %input{relationship: "relationship", "ng-model" => "formData.relationship", type: "text", "typeahead" => "suggestion for suggestion in relationships($viewValue)", autocomplete: "off"}
 
 .form-group
   %a.btn{"ui-sref" => "questionnaire.trait"}

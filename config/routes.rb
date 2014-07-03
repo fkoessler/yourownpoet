@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   # verse api routes
   namespace :api do
     resources :verses, :defaults => { :format => 'json' }
+    get 'questionnaire/relationship', :defaults => { :format => 'json' }
+    get 'questionnaire/trait', :defaults => { :format => 'json' }
+    get 'questionnaire/message', :defaults => { :format => 'json' }
   end
 
   

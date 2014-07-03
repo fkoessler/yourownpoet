@@ -2,6 +2,7 @@
 
 .form-group
   %label{for: "message"} Message
-  %input.form-control{message: "message", "ng-model" => "formData.message", type: "text"}
+  %div{"ng-controller" => "MessagesTypeaheadCtrl"}
+    %input{message: "message", "ng-model" => "formData.message", type: "text", "typeahead" => "suggestion for suggestion in messages($viewValue)", autocomplete: "off"}
 
 %button.btn{type: "submit"} Submit
