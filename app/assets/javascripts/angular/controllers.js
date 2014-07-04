@@ -77,7 +77,7 @@ function RelationshipsTypeaheadCtrl($scope, $http, limitToFilter) {
 
 function TraitsTypeaheadCtrl($scope, $http, limitToFilter) {
   $scope.traits = function(traitName) {
-    return $http.get("/api/questionnaire/trait?q="+traitName).then(function(response){
+    return $http.get("/api/questionnaire/trait?search="+traitName).then(function(response){
       return limitToFilter(response.data, 15);
     });
   };
@@ -85,7 +85,7 @@ function TraitsTypeaheadCtrl($scope, $http, limitToFilter) {
 
 function MessagesTypeaheadCtrl($scope, $http, limitToFilter) {
   $scope.messages = function(messageName) {
-    return $http.get("/api/questionnaire/message?q="+messageName).then(function(response){
+    return $http.get("/api/questionnaire/message?search="+messageName).then(function(response){
       return limitToFilter(response.data, 15);
     });
   };
