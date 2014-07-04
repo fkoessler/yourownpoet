@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Relationship, :type => :model do
+  
   it "has a valid factory" do
     expect(create(:relationship)).to be_valid
   end
 
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:male_mirror) }
-  it { should validate_presence_of(:female_mirror) }
 
   it "sex should default to 0" do
     relationship = create(:relationship)

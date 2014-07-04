@@ -20,11 +20,97 @@ require 'rails_helper'
 
 RSpec.describe Api::QuestionnaireController, :type => :controller do
 
-
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # VersesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  describe "GET relationship" do
+    before(:each) do
+      create(:relationship_bro)
+      create(:relationship_brother)
+      create(:relationship_cousin)
+      create(:relationship_father)
+      create(:relationship_friend)
+      create(:relationship_heartbeat)
+    end
+    it "returns matching relationship record when theres one match" do
+      expected = ["father"]
+      get :relationship, {search: 'fath', format: :json}, valid_session
+      expect(JSON.parse(response.body)).to eq(expected)
+    end
+    it "returns matching relationship records when search matches many" do
+      expected = ["bro", "brother"]
+      get :relationship, {search: 'bro', format: :json}, valid_session
+      expect(JSON.parse(response.body)).to eq(expected)
+    end
+    it "returns http response status 200 when results are found" do
+      get :relationship, {search: 'fath', format: :json}, valid_session
+      expect(response).to have_http_status(200)
+    end
+    it "returns http response status 204 no-content when no match" do
+      get :relationship, {search: 'xxxbb', format: :json}, valid_session
+      expect(response).to have_http_status(:no_content)
+    end
+  end
+
+  describe "GET trait" do
+    before(:each) do
+      create(:trait_category)
+      create(:trait_category_artistic)
+      create(:trait_category_courageous)
+      create(:trait_category_fatherly)
+      create(:trait_category_friendly)
+      create(:trait_category_philosophical)
+    end
+    it "returns matching trait record when theres one match" do
+      expected = ["friendly amiable outgoing sociable"]
+      get :trait, {search: 'amiable', format: :json}, valid_session
+      expect(JSON.parse(response.body)).to eq(expected)
+    end
+    it "returns matching trait records when search matches many" do
+      expected = ["appreciative grateful thankful", "courageous brave lionhearted"]
+      get :trait, {search: 'ra', format: :json}, valid_session
+      expect(JSON.parse(response.body)).to eq(expected)
+    end
+    it "returns http response status 200 when results are found" do
+      get :trait, {search: 'amiable', format: :json}, valid_session
+      expect(response).to have_http_status(200)
+    end
+    it "returns http response status 204 no-content when no match" do
+      get :trait, {search: 'xxxbb', format: :json}, valid_session
+      expect(response).to have_http_status(:no_content)
+    end
+  end
+
+  describe "GET message" do
+    before(:each) do
+      create(:message_category)
+      create(:message_category_congratulations)
+      create(:message_category_girlfriend)
+      create(:message_category_get_well)
+      create(:message_category_miss_you)
+      create(:message_category_wedding)
+    end
+    it "returns matching message record when theres one match" do
+      expected = ["Congratulations"]
+      get :message, {search: 'Congratulations', format: :json}, valid_session
+      expect(JSON.parse(response.body)).to eq(expected)
+    end
+    it "returns matching message records when search matches many" do
+      expected = ["You are my star", "I miss you"]
+      get :message, {search: 'you', format: :json}, valid_session
+      expect(JSON.parse(response.body)).to eq(expected)
+    end
+    it "returns http response status 200 when results are found" do
+      get :message, {search: 'miss you', format: :json}, valid_session
+      expect(response).to have_http_status(200)
+    end
+    it "returns http response status 204 no-content when no match" do
+      get :message, {search: 'xxxbb', format: :json}, valid_session
+      expect(response).to have_http_status(:no_content)
+    end
+  end
 
 
 end

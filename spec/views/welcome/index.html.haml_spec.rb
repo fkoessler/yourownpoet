@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "welcome/index.html.haml", :type => :view do
 
-  before do
-    render
-  end
+  #before(:all) do
+  #  render
+  #end
 
   #it "displays the receiverName input" do
   #  expect(rendered).to have_field('receiver_name', :type => 'text')

@@ -1,6 +1,6 @@
 class Relationship < ActiveRecord::Base
 
-  validates :name, :male_mirror, :female_mirror, presence: true
+  validates :name, presence: true
   validates :name, uniqueness: true
   validates_inclusion_of :sex, :category, in: 0..2
   # constants

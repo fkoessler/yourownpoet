@@ -5,7 +5,11 @@ class Api::QuestionnaireController < ApplicationController
 
   def relationship
     relationships = Relationship.where("name like ?", "%#{typeahead_params[:search]}%").pluck(:name)
-    respond_with relationships
+    if relationships.present?
+      respond_with relationships
+    else
+      respond_with relationships, status: :no_content
+    end
   end
 
   def trait
