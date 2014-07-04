@@ -2,17 +2,18 @@ require 'rails_helper'
 
 RSpec.describe "welcome/index.html.haml", :type => :view do
 
-  #before(:all) do
-  #  render
-  #end
+  before(:each) do
+    render
+  end
 
-  #it "displays the receiverName input" do
-  #  expect(rendered).to have_field('receiver_name', :type => 'text')
+  #it "should set page title to 'YourOwnPoet'" do
+  #  expect(rendered).to have_title('YourOwnPoet')
   #end
+  it "should display header 1 'The Poet'" do
+    expect(rendered).to have_selector('h1', 'The Poet')
+  end
+  it "should have container div for angular ui-view" do
+    expect(rendered).to have_selector("div[ui-view='']")
+  end
 
-  #it "displays a Next link" do
-  #  expect(rendered).to have_link("Next")
-  #end
-
-  #pending "it should contain submit button to correct url"
 end

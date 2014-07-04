@@ -7,6 +7,10 @@ RSpec.describe WelcomeController, :type => :controller do
       get 'index'
       expect(response).to be_success
     end
+    it 'should render welcome/index.html template' do
+      get 'index'
+      expect(response).to render_template(:index)
+    end
   end
-  
+
 end

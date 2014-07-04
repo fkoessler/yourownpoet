@@ -11,8 +11,6 @@ RSpec.describe Verse, :type => :model do
   it { should validate_presence_of(:line_three) }
   it { should validate_presence_of(:line_four) }
   it { should validate_presence_of(:line_five) }
-  #it { should validate_presence_of(:sex) }
-  #it { should validate_presence_of(:active) }
 
   it "sex should default to 0" do
     verse = create(:verse)

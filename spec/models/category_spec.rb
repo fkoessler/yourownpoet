@@ -7,9 +7,6 @@ RSpec.describe Category, :type => :model do
   end
 
   it { should validate_presence_of(:name) }
-  #it { should validate_presence_of(:active) }
-  #it { should validate_presence_of(:sex) }
-  #it { should validate_presence_of(:fill_the_blank) }
 
   it "sex should default to 0" do
     category = create(:category)
