@@ -5,8 +5,8 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
 
 // configuring our routes 
 // =============================================================================
-.config(function($stateProvider, $urlRouterProvider) {
-  
+//.config(function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $stateProvider
   
     // route to show our basic form (/questionnaire)
@@ -51,12 +51,14 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
   // catch all route
   // send users to the form page 
   $urlRouterProvider.otherwise('/questionnaire/receiver_name');
-})
+
+
+}])
 
 // our controller for the form
 // =============================================================================
-.controller('questionnaireCtrl', function($scope) {
-  
+//.controller('questionnaireCtrl', function($scope) {
+.controller('questionnaireCtrl', ['$scope', function($scope) {
   // we will store all of our form data in this object
   $scope.formData = {};
   
@@ -64,8 +66,9 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
   $scope.processForm = function() {
     alert('awesome!');
   };
-  
-});
+
+}]);
+
 
 function RelationshipsTypeaheadCtrl($scope, $http, limitToFilter) {
   $scope.relationships = function(relationshipName) {
@@ -74,6 +77,7 @@ function RelationshipsTypeaheadCtrl($scope, $http, limitToFilter) {
     });
   };
 }
+RelationshipsTypeaheadCtrl.$inject = ['$scope', '$http', 'limitToFilter'];
 
 function TraitsTypeaheadCtrl($scope, $http, limitToFilter) {
   $scope.traits = function(traitName) {
@@ -82,6 +86,7 @@ function TraitsTypeaheadCtrl($scope, $http, limitToFilter) {
     });
   };
 }
+TraitsTypeaheadCtrl.$inject = ['$scope', '$http', 'limitToFilter'];
 
 function MessagesTypeaheadCtrl($scope, $http, limitToFilter) {
   $scope.messages = function(messageName) {
@@ -90,3 +95,4 @@ function MessagesTypeaheadCtrl($scope, $http, limitToFilter) {
     });
   };
 }
+MessagesTypeaheadCtrl.$inject = ['$scope', '$http', 'limitToFilter'];
