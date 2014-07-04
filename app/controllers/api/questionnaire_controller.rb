@@ -4,7 +4,11 @@ class Api::QuestionnaireController < ApplicationController
   respond_to :json
 
   def relationship
-    relationships = Relationship.where("LOWER(name) like ?", "%#{typeahead_params[:search].downcase}%").pluck(:name)
+    if typeahead_params[:search].blank?
+      respond_with [], status: :bad_request and return
+    else
+      relationships = Relationship.where("LOWER(name) like ?", "%#{typeahead_params[:search].downcase}%").pluck(:name)
+    end
     if relationships.present?
       respond_with relationships
     else
@@ -13,7 +17,11 @@ class Api::QuestionnaireController < ApplicationController
   end
 
   def trait
-    traits = TraitCategory.where("LOWER(name) like ?", "%#{typeahead_params[:search].downcase}%").pluck(:name)
+    if typeahead_params[:search].blank?
+      respond_with [], status: :bad_request and return
+    else
+      traits = TraitCategory.where("LOWER(name) like ?", "%#{typeahead_params[:search].downcase}%").pluck(:name)
+    end
     if traits.present?
       respond_with traits
     else
@@ -22,8 +30,11 @@ class Api::QuestionnaireController < ApplicationController
   end
 
   def message
-    messages = MessageCategory.where("LOWER(name) like ?", "%#{typeahead_params[:search].downcase}%").pluck(:name)
-    #messages = MessageCategory.where("LOWER(name) =~ ?", "%#{typeahead_params[:search]}%").pluck(:name)
+    if typeahead_params[:search].blank?
+      respond_with [], status: :bad_request and return
+    else
+      messages = MessageCategory.where("LOWER(name) like ?", "%#{typeahead_params[:search].downcase}%").pluck(:name)
+    end
     if messages.present?
       respond_with messages
     else
