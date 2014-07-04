@@ -26,7 +26,4 @@ RSpec.describe Category, :type => :model do
 
   it { should ensure_inclusion_of(:sex).in_range(0..2) }
 
-  #it { should have_many(:message_verses) }
-  #it { should have_many(:trait_verses) }
-
 end

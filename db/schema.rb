@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20140703123707) do
     t.string   "name"
     t.string   "male_mirror"
     t.string   "female_mirror"
-    t.integer  "category"
-    t.integer  "sex"
+    t.integer  "category",      default: 0
+    t.integer  "sex",           default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
