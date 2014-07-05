@@ -1,11 +1,9 @@
-// app.js
 // create our angular app and inject ngAnimate and ui-router 
 // =============================================================================
 angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
 
 // configuring our routes 
 // =============================================================================
-//.config(function($stateProvider, $urlRouterProvider) {
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $stateProvider
   
@@ -57,14 +55,33 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
 
 // our controller for the form
 // =============================================================================
-//.controller('questionnaireCtrl', function($scope) {
-.controller('questionnaireCtrl', ['$scope', function($scope) {
+.controller('questionnaireCtrl', ['$scope', '$http', function($scope, $http) {
   // we will store all of our form data in this object
   $scope.formData = {};
   
   // function to process the form
   $scope.processForm = function() {
-    alert('awesome!');
+    $http({
+      method  : 'POST',
+      url     : 'questionnaire/poem',
+      data    : $.param($scope.formData),  // pass in data as strings
+      headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+    })
+    .success(function(data) {
+        console.log(data);
+
+        if (!data.success) {
+          // if not successful, bind errors to error variables
+            $scope.errorReceiverName = data.errors.receiverName;
+            $scope.errorLocation = data.errors.location;
+            $scope.errorRelationship = data.errors.relationship;
+            $scope.errorTrait = data.errors.trait;
+            $scope.errorMessage = data.errors.message;
+        } else {
+          // if successful, bind success message to message
+            $scope.message = data.message;
+        }
+    });
   };
 
 }]);
