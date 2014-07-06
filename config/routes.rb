@@ -11,13 +11,15 @@ Rails.application.routes.draw do
   get 'questionnaire/relationship'
   get 'questionnaire/trait'
   get 'questionnaire/message'
+  get 'questionnaire/poem'
 
   # verse api routes
-  namespace :api do
-    resources :verses, :defaults => { :format => 'json' }
-    get 'questionnaire/relationship', :defaults => { :format => 'json' }
-    get 'questionnaire/trait', :defaults => { :format => 'json' }
-    get 'questionnaire/message', :defaults => { :format => 'json' }
+  namespace :api, :defaults => { :format => 'json' } do
+    resources :verses
+    get 'questionnaire/relationship'
+    get 'questionnaire/trait'
+    get 'questionnaire/message'
+    post 'questionnaire/save_form'
   end
 
   

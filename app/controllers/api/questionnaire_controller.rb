@@ -42,6 +42,12 @@ class Api::QuestionnaireController < ApplicationController
     end
   end
 
+  # Validates and saves the questionnaire form fields in session
+  def save_form
+    zobi = {yo: 'ouech', popo: 'hihi', success: true}
+    render json: zobi
+  end
+
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.

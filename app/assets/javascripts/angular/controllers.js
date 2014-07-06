@@ -5,6 +5,7 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
 // configuring our routes 
 // =============================================================================
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  
   $stateProvider
   
     // route to show our basic form (/questionnaire)
@@ -44,10 +45,16 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
     .state('questionnaire.message', {
       url: '/message',
       templateUrl: 'questionnaire/message.html'
+    })
+
+    .state('poem', {
+      url: '/poem',
+      templateUrl: 'questionnaire/poem.html',
+      controller: 'questionnaireCtrl'
     });
     
   // catch all route
-  // send users to the form page 
+  // send users to the receiver_name page
   $urlRouterProvider.otherwise('/questionnaire/receiver_name');
 
 
@@ -55,7 +62,7 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
 
 // our controller for the form
 // =============================================================================
-.controller('questionnaireCtrl', ['$scope', '$http', function($scope, $http) {
+.controller('questionnaireCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
   // we will store all of our form data in this object
   $scope.formData = {};
   
@@ -63,7 +70,7 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
   $scope.processForm = function() {
     $http({
       method  : 'POST',
-      url     : 'questionnaire/poem',
+      url     : 'api/questionnaire/save_form',
       data    : $.param($scope.formData),  // pass in data as strings
       headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
     })
@@ -80,9 +87,10 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
         } else {
           // if successful, bind success message to message
             $scope.message = data.message;
+            $state.go('poem');
         }
     });
-  };
+  }
 
 }]);
 
