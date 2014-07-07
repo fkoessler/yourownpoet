@@ -21,3 +21,6 @@ backlog
 
 # Ignore compiled assets
 /public/assets
+
+# Ignore documentation
+/doc
