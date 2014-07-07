@@ -1,5 +1,6 @@
+# The controller in charge of rendering the homepage
 class WelcomeController < ApplicationController
-  #renders the application's homepage
+  #Renders the application's homepage
   def index
   end
 end

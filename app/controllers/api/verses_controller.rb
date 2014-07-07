@@ -1,3 +1,6 @@
+# API controller in charge of CRUD operations on Verses
+#
+# Responds with json
 class Api::VersesController < ApplicationController
   
   protect_from_forgery with: :null_session
@@ -5,13 +8,16 @@ class Api::VersesController < ApplicationController
   respond_to :json
 
   # GET /api/verses
-  # GET /api/verses.json
+  #
+  # Responds with all verses
   def index
     respond_with(@verses = Verse.all)
   end
 
   # GET /api/verses/1
-  # GET /api/verses/1.json
+  #
+  # Takes a verse ID as attribute
+  # Responds with the verse if found
   def show
     respond_with @verse
   end
@@ -26,7 +32,8 @@ class Api::VersesController < ApplicationController
   #end
 
   # POST /api/verses
-  # POST /api/verses.json
+  #
+  # Creates a new Verse record
   def create
     @verse = Verse.new(verse_params)
 
@@ -39,14 +46,16 @@ class Api::VersesController < ApplicationController
   end
 
   # PATCH/PUT /api/verses/1
-  # PATCH/PUT /api/verses/1.json
+  #
+  # Updates a Verse record
   def update
     @verse.update(verse_params)
     respond_with(@verse)
   end
 
   # DELETE /api/verses/1
-  # DELETE /api/verses/1.json
+  #
+  # Deletes a Verse record
   def destroy
     @verse.destroy
     head :ok
