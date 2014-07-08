@@ -18,4 +18,12 @@ RSpec.describe "questionnaire/questionnaire.html.haml", :type => :view do
     expect(rendered).to have_selector("div[ui-view='']")
   end
 
+  it "displays the submit button" do
+    expect(rendered).to have_selector("button[type='submit']")
+  end
+
+  it "includes XSRF token" do
+    expect(rendered).to have_selector("input[type='hidden'][name='authenticity_token']")
+  end
+
 end
