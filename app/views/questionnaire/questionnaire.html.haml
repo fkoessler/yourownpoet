@@ -20,9 +20,18 @@
 
   / use ng-submit to catch the form submission and use our Angular function
 
-  %form#questionnaire-form{"ng-submit" => "processForm()"}
-    / our nested state views will be injected here
-    #form-views{"ui-view" => ""}
+  %form#questionnaire-form{"ng-submit" => "processForm()", "novalidate" => "", name: "questionnaireForm"}
+    .form-view-container
+      / our nested state views will be injected here
+      #form-views{"ui-view" => ""}
 
-  / show our formData as it is being typed
-  %pre {{ formData }}
+    / show our formData as it is being typed
+    %pre {{ formData }}
+    /show validation errors here
+    %p {{ errorReceiverName }}
+    %p {{ errorLocation }}
+    %p {{ errorRelationship }}
+    %p {{ errorTrait }}
+    %p {{ errorMessage }}
+    = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
+    %button.btn{type: "submit", "ng-disabled" => "isDisabled"} Submit

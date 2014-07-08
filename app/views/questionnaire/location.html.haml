@@ -2,8 +2,7 @@
 
 .form-group
   %label{for: "location"} Location
-  %input{location: "location", "ng-model" => "formData.location", type: "text"}
-
+  %input{location: "location", "ng-model" => "formData.location", type: "text", "required" => "", name: "location"}
 .form-group
   %a.btn{"ui-sref" => "questionnaire.relationship"}
     Next

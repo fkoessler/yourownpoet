@@ -65,29 +65,67 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
 .controller('questionnaireCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
   // we will store all of our form data in this object
   $scope.formData = {};
+  // submit button disabled by default
+  $scope.isDisabled = false;
+  // enable submit button if all formData fields are set
+  $scope.$watchCollection('formData', function() {
+    if ($scope.formData.receiver_name && $scope.formData.location && $scope.formData.relationship && $scope.formData.trait && $scope.formData.message) {
+      $scope.isDisabled = false;
+    } else {
+      $scope.isDisabled = false;
+    }
+  });
   
-  // function to process the form
+  // function to submit the form
   $scope.processForm = function() {
+
+    // wrap formData in questionnaire element (matches backend)
+    postParams = 
+    {"questionnaire": 
+      {
+       "receiver_name": $scope.formData.receiver_name,
+       "location": $scope.formData.location,
+       "relationship": $scope.formData.relationship,
+       "trait_category": $scope.formData.trait,
+       "message_category": $scope.formData.message
+      }
+    } 
+     // send post request
     $http({
       method  : 'POST',
       url     : 'api/questionnaire/save_form',
-      data    : $.param($scope.formData),  // pass in data as strings
+      data    : $.param(postParams),  // pass in data as strings
       headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
     })
     .success(function(data) {
         console.log(data);
+        $scope.errorReceiverName = "";
+        $scope.errorLocation = "";
+        $scope.errorRelationship = "";
+        $scope.errorTrait = "";
+        $scope.errorMessage = "";
 
         if (!data.success) {
           // if not successful, bind errors to error variables
-            $scope.errorReceiverName = data.errors.receiverName;
-            $scope.errorLocation = data.errors.location;
-            $scope.errorRelationship = data.errors.relationship;
-            $scope.errorTrait = data.errors.trait;
-            $scope.errorMessage = data.errors.message;
+          if (data.errors.receiver_name) {
+            $scope.errorReceiverName = 'Receiver name ' + data.errors.receiver_name;
+          }
+          if (data.errors.location) {
+            $scope.errorLocation = 'Location ' + data.errors.location;
+          }
+          if (data.errors.relationship) {
+            $scope.errorRelationship = 'Relationship ' + data.errors.relationship;
+          }
+          if (data.errors.trait_category) {
+            $scope.errorTrait = 'Trait ' + data.errors.trait_category;
+          }
+          if (data.errors.message_category) {
+            $scope.errorMessage = 'Message ' + data.errors.message_category;
+          }
         } else {
           // if successful, bind success message to message
-            $scope.message = data.message;
-            $state.go('poem');
+          //$scope.message = data.success_message;
+          $state.go('poem');
         }
     });
   }

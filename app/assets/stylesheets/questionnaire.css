@@ -26,7 +26,8 @@ body                            { padding-top:20px; }
 ============================================================================= */
 #signup-form            { position:relative; min-height:300px; overflow:hidden; padding:30px; }
 #form-views             { width:auto;}
-#questionnaire-form     { height: 50px; padding: 20px; }
+#questionnaire-form     { padding: 20px; }
+.form-view-container    { height: 50px; }
 
 /* basic styling for entering and leaving */
 /* left and right added to ensure full width */

@@ -64,4 +64,8 @@ RSpec.describe QuestionnaireController, :type => :controller do
     end
   end
 
+  describe "GET 'poem'" do
+
+  end
+  
 end
