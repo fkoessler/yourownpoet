@@ -26,11 +26,8 @@ class Api::QuestionnaireController < ApplicationController
   # Used in conjonction with angular-ui bootstrap typeahead
   def trait
     if typeahead_params[:search].blank?
-      logger.debug "BLANK MOFO"
       respond_with [], status: :bad_request and return
     else
-      logger.debug "NOT BLANK MOFO"
-      logger.debug typeahead_params[:search].downcase
       traits = TraitCategory.where("LOWER(name) like ?", "%#{typeahead_params[:search].downcase}%").pluck(:name)
     end
     if traits.present?
@@ -71,6 +68,7 @@ class Api::QuestionnaireController < ApplicationController
     response_params = {}
 
     if questionnaire.valid?
+      session[:questionnaire] = questionnaire.to_json
       response_params[:success] = true
       render json: response_params
     else

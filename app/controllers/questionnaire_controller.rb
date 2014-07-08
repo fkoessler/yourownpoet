@@ -32,11 +32,8 @@ class QuestionnaireController < ApplicationController
 
   # Builds and returns the poem!
   def poem
-    @receiver_name = session[:receiver_name]
-    @location = session[:location]
-    @relationship = session[:relationship]
-    @trait = session[:trait]
-    @message = session[:message]
+
+    @poem = Poem.new(JSON.parse(session[:questionnaire]))
     
   end
   

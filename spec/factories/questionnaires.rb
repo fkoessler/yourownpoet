@@ -6,9 +6,9 @@ FactoryGirl.define do
 
     receiver_name "Arthur"
     location "Paris"
-    relationship_id 1
-    trait_category_id 1
-    message_category_id 1
+    relationship "Brother"
+    trait_category "adventurous venturous"
+    message_category "Happy Birthday"
   end
 
 end
