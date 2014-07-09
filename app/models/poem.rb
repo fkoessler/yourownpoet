@@ -1,9 +1,6 @@
+# This class is used to store a ready to display, customized poem.
 class Poem
 
-  attr_accessor :questionnaire, :title, :intro_line, :trait_line, :message_line
-
-  def initialize(questionnaire)
-    @questionnaire = Questionnaire.new(questionnaire)
-  end
+  attr_accessor :title, :intro_verse, :trait_verse, :message_verse
 
 end

@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :questionnaire do
-    #skip_create
+    skip_create
 
     receiver_name "Arthur"
     location "Paris"

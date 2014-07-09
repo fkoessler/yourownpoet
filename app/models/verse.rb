@@ -1,4 +1,4 @@
-# Generic class to represent a verse
+# Generic class to represent a verse from the database
 # === Attributes
 # string: line_one, line_two, line_three, line_four, line_five
 # boolean: active
