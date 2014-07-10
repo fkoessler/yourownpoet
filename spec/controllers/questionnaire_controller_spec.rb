@@ -65,6 +65,14 @@ RSpec.describe QuestionnaireController, :type => :controller do
   end
 
   describe "GET 'poem'" do
+    it "renders questionnaire/verses_not_found.html if theres an ActiveRecord::RecordNotFound exception" do
+      verse_selector = double("VerseSelector", select_verses: ActiveRecord::RecordNotFound.new("Verses not found"))
+      get 'poem', nil, {questionnaire: {receiver_name:"a",location:"b",relationship:"coach",trait_category:"adventurous venturous",message_category:"You hurt my feelings"}}.to_json
+      expect(response).to render_template(:verses_not_found)
+      #VerseSelector.stub(:select_verses) { raise ActiveRecord::RecordNotFound }
+      #get 'poem', nil, {questionnaire: {receiver_name:"a",location:"b",relationship:"coach",trait_category:"adventurous venturous",message_category:"You hurt my feelings"}}
+      #expect(response).to render_template(:verses_not_found)
+    end
 
   end
   

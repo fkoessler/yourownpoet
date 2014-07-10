@@ -11,4 +11,10 @@ class Verse < ActiveRecord::Base
   #
   # undefined = 0, male = 1, female = 2
   SEX = { undefined: 0, male: 1, female: 2 }
+
+  # Everytime we call as_json on a Verse to get a hash representing the Verse,
+  # nil values will be removed from that hash
+  def as_json(options={})
+    super(options).reject { |k, v| v.nil? }
+  end
 end

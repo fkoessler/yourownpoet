@@ -4,6 +4,7 @@
 class QuestionnaireController < ApplicationController
 
   layout false
+  rescue_from ActiveRecord::RecordNotFound, with: :verses_not_found
   
   # Returns the questionnaire form html that will serve as container
   # for the different form inputs
@@ -32,12 +33,20 @@ class QuestionnaireController < ApplicationController
 
   # Builds and returns the poem!
   def poem
+    questionnaire = JSON.parse(session[:questionnaire], symbolize_names: true)
+    @rawVerses = VerseSelector.select_verses(questionnaire[:trait_category], questionnaire[:message_category])
 
-    #rawVerse = VerseSelector.select_verses(message_category, trait_category)
     #@poem = PoemCustomizer.buildPoem(rawVerse, receiver_name, location, relationship)
     
     #@poem = Poem.new(JSON.parse(session[:questionnaire]))
     
+  end
+
+  protected
+
+  # Is called when a ActiveRecord::RecordNotFound exception is raised in this controller
+  def verses_not_found
+    render 'questionnaire/verses_not_found'
   end
   
 end

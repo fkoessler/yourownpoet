@@ -56,7 +56,7 @@ RSpec.describe Api::QuestionnaireController, :type => :controller do
 
   describe "GET trait" do
     before(:each) do
-      create(:trait_category)
+      create(:trait_category_appreciative)
       create(:trait_category_artistic)
       create(:trait_category_courageous)
       create(:trait_category_fatherly)
@@ -85,7 +85,7 @@ RSpec.describe Api::QuestionnaireController, :type => :controller do
 
   describe "GET message" do
     before(:each) do
-      create(:message_category)
+      create(:message_category_star)
       create(:message_category_congratulations)
       create(:message_category_girlfriend)
       create(:message_category_get_well)

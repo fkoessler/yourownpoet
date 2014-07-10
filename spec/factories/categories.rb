@@ -6,7 +6,7 @@ FactoryGirl.define do
     name "Example Category"
   end
 
-  factory :trait_category, class: 'TraitCategory' do
+  factory :trait_category_appreciative, class: 'TraitCategory' do
     name "appreciative grateful thankful"
   end
   factory :trait_category_artistic, class: 'TraitCategory' do
@@ -25,7 +25,7 @@ FactoryGirl.define do
     name "philosophical"
   end
 
-  factory :message_category, class: 'MessageCategory' do
+  factory :message_category_star, class: 'MessageCategory' do
     name "You are my star"
   end
   factory :message_category_congratulations, class: 'MessageCategory' do
