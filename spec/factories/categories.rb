@@ -27,21 +27,27 @@ FactoryGirl.define do
 
   factory :message_category_star, class: 'MessageCategory' do
     name "You are my star"
+    poem_title "~N, you are my star!"
   end
   factory :message_category_congratulations, class: 'MessageCategory' do
     name "Congratulations"
+    poem_title "Congratulations, ~N!"
   end
   factory :message_category_girlfriend, class: 'MessageCategory' do
     name "Be my girlfriend"
+    poem_title "~N, will you be my girlfriend!?"
   end
   factory :message_category_get_well, class: 'MessageCategory' do
     name "Get Well"
+    poem_title "~N, please get well..."
   end
   factory :message_category_miss_you, class: 'MessageCategory' do
     name "I miss you"
+    poem_title "Missing you, ~N"
   end
   factory :message_category_wedding, class: 'MessageCategory' do
     name "Wedding invitation"
+    poem_title "Please come to our wedding celebration, ~N!"
   end
 
 end

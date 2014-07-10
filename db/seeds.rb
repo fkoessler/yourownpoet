@@ -34,9 +34,9 @@ trait_verse_list.each do |type, line_one, line_two, line_three, line_four, line_
 end
 
 message_category_list = [
-  [ "MessageCategory", "Happy Birthday" ],
-  [ "MessageCategory", "Thank you" ],
-  [ "MessageCategory", "You hurt my feelings" ]
+  [ "MessageCategory", "Happy Birthday", "Happy birthday ~N" ],
+  [ "MessageCategory", "Thank you", "Thank you ~N" ],
+  [ "MessageCategory", "You hurt my feelings", "It hurts, ~N" ]
 ]
 message_category_list.each do |type, name|
   MessageCategory.create( type: type, name: name)
