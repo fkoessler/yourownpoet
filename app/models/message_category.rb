@@ -5,6 +5,7 @@
 # integer: sex
 # boolean: fill_the_blank
 # has_many: MessageVerses
+# string: poem_title
 
 class MessageCategory < Category
   has_many :message_verses, :foreign_key => "category_id"

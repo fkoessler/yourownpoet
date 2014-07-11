@@ -46,6 +46,7 @@ class QuestionnaireController < ApplicationController
 
   # Is called when a ActiveRecord::RecordNotFound exception is raised in this controller
   def verses_not_found
+    logger.error "Verses not found (ActiveRecord::RecordNotFound raised), with: #{session[:questionnaire][:trait_category]}, #{session[:questionnaire][:message_category]}"
     render 'questionnaire/verses_not_found'
   end
   
