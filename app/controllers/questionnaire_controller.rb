@@ -34,12 +34,8 @@ class QuestionnaireController < ApplicationController
   # Builds and returns the poem!
   def poem
     questionnaire = JSON.parse(session[:questionnaire], symbolize_names: true)
-    @rawVerses = VerseSelector.select_verses(questionnaire[:trait_category], questionnaire[:message_category])
-
-    #@poem = PoemCustomizer.buildPoem(rawVerse, receiver_name, location, relationship)
-    
-    #@poem = Poem.new(JSON.parse(session[:questionnaire]))
-    
+    rawVerses = VerseSelector.select_verses(questionnaire[:trait_category], questionnaire[:message_category])
+    @poem = PoemCustomizer.buildPoem(rawVerse, questionnaire[:receiver_name], questionnaire[:location], questionnaire[:relationship])    
   end
 
   protected
