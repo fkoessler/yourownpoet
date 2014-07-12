@@ -4,7 +4,8 @@
 class QuestionnaireController < ApplicationController
 
   layout false
-  rescue_from ActiveRecord::RecordNotFound, with: :verses_not_found
+  rescue_from ActiveRecord::RecordNotFound, KeyError, with: :verses_not_found
+  before_action :check_session, only: [:poem]
   
   # Returns the questionnaire form html that will serve as container
   # for the different form inputs
@@ -35,15 +36,25 @@ class QuestionnaireController < ApplicationController
   def poem
     questionnaire = JSON.parse(session[:questionnaire], symbolize_names: true)
     rawVerses = VerseSelector.select_verses(questionnaire[:trait_category], questionnaire[:message_category])
-    @poem = PoemCustomizer.buildPoem(rawVerse, questionnaire[:receiver_name], questionnaire[:location], questionnaire[:relationship])    
+    @poem = PoemCustomizer.customize_poem(rawVerses, questionnaire)
   end
 
-  protected
+  private
 
   # Is called when a ActiveRecord::RecordNotFound exception is raised in this controller
-  def verses_not_found
-    logger.error "Verses not found (ActiveRecord::RecordNotFound raised), with: #{session[:questionnaire][:trait_category]}, #{session[:questionnaire][:message_category]}"
+  # Logs error and renders an error message page
+  def verses_not_found(ex)
+    logger.error "Exception raised in questionnaire_controller.rb: Exception #{ex.class}: #{ex.message}"
     render 'questionnaire/verses_not_found'
+  end
+
+  # Is called before the poem method to make sure we have the questionnaire available in the session
+  # Logs error and renders an error message page
+  def check_session
+    if !session.key?(:questionnaire)
+      logger.error "questionnaire_controller.rb, poem method error: questionnaire not in session"
+      render 'questionnaire/verses_not_found'
+    end
   end
   
 end

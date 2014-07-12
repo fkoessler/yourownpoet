@@ -10,14 +10,14 @@ class VerseSelector
   #
   # ==== Returns
   #
-  # A hash: { intro: { line_one, line_two, line_three, line_four, line_five }, trait: { line_one, line_two, line_three, line_four, line_five }, message: { line_one, line_two, line_three, line_four, line_five } }
+  # A hash: { title, intro: { line_one, line_two, line_three, line_four, line_five }, trait: { line_one, line_two, line_three, line_four, line_five }, message: { line_one, line_two, line_three, line_four, line_five } }
   # Raises a ActiveRecord::RecordNotFound if a verse could not be found
   def self.select_verses(trait_category_name, message_category_name)
-    #title = get_poem_title(message_category_name)
+    title = get_poem_title(message_category_name).fetch("poem_title")
     intro = select_intro_verse
     trait = select_trait_verse(trait_category_name)
     message = select_message_verse(message_category_name)
-    selection = { intro_verse: intro, trait_verse: trait, message_verse: message }
+    selection = { title: title, intro_verse: intro, trait_verse: trait, message_verse: message }
   end
 
   private
@@ -48,8 +48,11 @@ class VerseSelector
     categoryVerses.select('line_one', 'line_two', 'line_three', 'line_four', 'line_five').offset(offset).first!.as_json
   end
 
-  #def self.get_poem_title(message_category_name)
-  #  MessageCategory.select(:title).where(name: message_category_name)
-  #end
-
+  # Private class method that gets the poem's title from the message_category
+  # Returns a Hash
+  # Raises a ActiveRecord::RecordNotFound if no record found
+  def self.get_poem_title(message_category_name)
+    MessageCategory.select(:poem_title).find_by!(name: message_category_name).as_json
+  end
+  
 end

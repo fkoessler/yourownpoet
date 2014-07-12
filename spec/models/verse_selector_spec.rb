@@ -13,8 +13,8 @@ RSpec.describe VerseSelector, :type => :model do
   context "verses present in database" do
 
     before(:each) do
-      #seed the test database
 
+      #seed the test database
       create(:intro_verse_one)
       create(:intro_verse_two)
       create(:intro_verse_three)
@@ -47,7 +47,7 @@ RSpec.describe VerseSelector, :type => :model do
     end
 
     let(:raw_poem) { VerseSelector.select_verses('appreciative grateful thankful', 'Be my girlfriend') }
-    #let(:title) { raw_poem[:title] }
+    let(:title) { raw_poem[:title] }
     let(:intro_verse) { raw_poem[:intro_verse] }
     let(:trait_verse) { raw_poem[:trait_verse] }
     let(:message_verse) { raw_poem[:message_verse] }
@@ -92,8 +92,8 @@ RSpec.describe VerseSelector, :type => :model do
       expect(message_verse.values).not_to include(nil)
     end
 
-    #it "title should be a string" do
-    #  expect(title).to be_a(String)
-    #end
+    it "title should be a string" do
+      expect(title).to be_a(String)
+    end
   end
 end

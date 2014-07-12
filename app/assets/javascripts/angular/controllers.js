@@ -66,13 +66,13 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
   // we will store all of our form data in this object
   $scope.formData = {};
   // submit button disabled by default
-  $scope.isDisabled = false;
+  $scope.isDisabled = true;
   // enable submit button if all formData fields are set
   $scope.$watchCollection('formData', function() {
     if ($scope.formData.receiver_name && $scope.formData.location && $scope.formData.relationship && $scope.formData.trait && $scope.formData.message) {
       $scope.isDisabled = false;
     } else {
-      $scope.isDisabled = false;
+      $scope.isDisabled = true;
     }
   });
   
