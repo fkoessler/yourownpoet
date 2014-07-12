@@ -101,8 +101,10 @@ class PoemCustomizer
   #
   # * +line+ - String
   def self.customize_line(line)
-    line = replace_choice(line)
+    line = replace_choices(line)
     line = replace_codes(line)
+    line[0] = line[0].capitalize
+    return line
   end
 
   # Private class method that gets a raw line as argument
@@ -117,7 +119,7 @@ class PoemCustomizer
   #
   # * +line+ - String where the three choices string part has been replaces:
   # ABCchoice2EFG
-  def self.replace_choice(line)
+  def self.replace_choices(line)
     # Regexp matches everything between curly brackets (lazy matching)
     array_of_three_choices = line.scan(/\{(.+?)\}/).flatten
 
@@ -157,33 +159,34 @@ class PoemCustomizer
   #
   # * +line+ - String where code replacements have been made
   def self.replace_codes(line)
-    line.sub!("[RNAME]", @@receiver_name)
-    line.sub!("[LOC]", @@location)
-    line.sub!("[REL]", @@relationship)
 
-    line.sub!("[SEN_SP]", SENDER_PRONOUNS[:SEN_SP][:singular])
-    line.sub!("[SEN_OP]", SENDER_PRONOUNS[:SEN_OP][:singular])
-    line.sub!("[SEN_POP]", SENDER_PRONOUNS[:SEN_POP][:singular])
-    line.sub!("[SEN_PEP]", SENDER_PRONOUNS[:SEN_PEP][:singular])
-    line.sub!("[SEN_IP]", SENDER_PRONOUNS[:SEN_IP][:singular])
-    line.sub!("[SEN_FUT]", SENDER_PRONOUNS[:SEN_FUT][:singular])
-    line.sub!("[SEN_COND]", SENDER_PRONOUNS[:SEN_COND][:singular])
-    line.sub!("[SEN_PRE]", SENDER_PRONOUNS[:SEN_PRE][:singular])
-    line.sub!("[SEN_PAST]", SENDER_PRONOUNS[:SEN_PAST][:singular])
+    line.gsub!("[RNAME]", @@receiver_name)
+    line.gsub!("[LOC]", @@location)
+    line.gsub!("[REL]", @@relationship)
 
-    line.sub!("[REC_SP]", RECEIVER_PRONOUNS[:REC_SP][@@receiver_sex.to_sym])
-    line.sub!("[REC_OP]", RECEIVER_PRONOUNS[:REC_OP][@@receiver_sex.to_sym])
-    line.sub!("[REC_POP]", RECEIVER_PRONOUNS[:REC_POP][@@receiver_sex.to_sym])
-    line.sub!("[REC_PEP]", RECEIVER_PRONOUNS[:REC_PEP][@@receiver_sex.to_sym])
-    line.sub!("[REC_IP]", RECEIVER_PRONOUNS[:REC_IP][@@receiver_sex.to_sym])
-    line.sub!("[REC_FUT]", RECEIVER_PRONOUNS[:REC_FUT][@@receiver_sex.to_sym])
-    line.sub!("[REC_COND]", RECEIVER_PRONOUNS[:REC_COND][@@receiver_sex.to_sym])
-    line.sub!("[REC_PRE]", RECEIVER_PRONOUNS[:REC_PRE][@@receiver_sex.to_sym])
-    line.sub!("[REC_GUY]", RECEIVER_PRONOUNS[:REC_GUY][@@receiver_sex.to_sym])
-    line.sub!("[REC_BF]", RECEIVER_PRONOUNS[:REC_BF][@@receiver_sex.to_sym])
-    line.sub!("[REC_MAN]", RECEIVER_PRONOUNS[:REC_MAN][@@receiver_sex.to_sym])
-    line.sub!("[REC_HOST]", RECEIVER_PRONOUNS[:REC_HOST][@@receiver_sex.to_sym])
-    line.sub!("[REC_BRO]", RECEIVER_PRONOUNS[:REC_BRO][@@receiver_sex.to_sym])
+    line.gsub!("[SEN_SP]", SENDER_PRONOUNS[:SEN_SP][:singular])
+    line.gsub!("[SEN_OP]", SENDER_PRONOUNS[:SEN_OP][:singular])
+    line.gsub!("[SEN_POP]", SENDER_PRONOUNS[:SEN_POP][:singular])
+    line.gsub!("[SEN_PEP]", SENDER_PRONOUNS[:SEN_PEP][:singular])
+    line.gsub!("[SEN_IP]", SENDER_PRONOUNS[:SEN_IP][:singular])
+    line.gsub!("[SEN_FUT]", SENDER_PRONOUNS[:SEN_FUT][:singular])
+    line.gsub!("[SEN_COND]", SENDER_PRONOUNS[:SEN_COND][:singular])
+    line.gsub!("[SEN_PRE]", SENDER_PRONOUNS[:SEN_PRE][:singular])
+    line.gsub!("[SEN_PAST]", SENDER_PRONOUNS[:SEN_PAST][:singular])
+
+    line.gsub!("[REC_SP]", RECEIVER_PRONOUNS[:REC_SP][@@receiver_sex.to_sym])
+    line.gsub!("[REC_OP]", RECEIVER_PRONOUNS[:REC_OP][@@receiver_sex.to_sym])
+    line.gsub!("[REC_POP]", RECEIVER_PRONOUNS[:REC_POP][@@receiver_sex.to_sym])
+    line.gsub!("[REC_PEP]", RECEIVER_PRONOUNS[:REC_PEP][@@receiver_sex.to_sym])
+    line.gsub!("[REC_IP]", RECEIVER_PRONOUNS[:REC_IP][@@receiver_sex.to_sym])
+    line.gsub!("[REC_FUT]", RECEIVER_PRONOUNS[:REC_FUT][@@receiver_sex.to_sym])
+    line.gsub!("[REC_COND]", RECEIVER_PRONOUNS[:REC_COND][@@receiver_sex.to_sym])
+    line.gsub!("[REC_PRE]", RECEIVER_PRONOUNS[:REC_PRE][@@receiver_sex.to_sym])
+    line.gsub!("[REC_GUY]", RECEIVER_PRONOUNS[:REC_GUY][@@receiver_sex.to_sym])
+    line.gsub!("[REC_BF]", RECEIVER_PRONOUNS[:REC_BF][@@receiver_sex.to_sym])
+    line.gsub!("[REC_MAN]", RECEIVER_PRONOUNS[:REC_MAN][@@receiver_sex.to_sym])
+    line.gsub!("[REC_HOST]", RECEIVER_PRONOUNS[:REC_HOST][@@receiver_sex.to_sym])
+    line.gsub!("[REC_BRO]", RECEIVER_PRONOUNS[:REC_BRO][@@receiver_sex.to_sym])
 
     return line
   end
@@ -197,13 +200,13 @@ class PoemCustomizer
   #
   # * +syllables_count+ - integer: number of syllables in word
   def self.count_syllables(word)
-    word.downcase!
+    word = word.downcase
     return 1 if word.length <= 3
     word.sub!(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '')
     word.sub!(/^y/, '')
     syllables_count = word.scan(/[aeiouy]{1,2}/).size
     # we want syllables to be at most 3
-    # (it will be used as array index in replace_choice)
+    # (it will be used as array index in replace_choices)
     syllables_count = 3 if syllables_count >= 3
     return syllables_count
   end

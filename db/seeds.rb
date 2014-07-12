@@ -75,7 +75,7 @@ message_verse_list = [
   [ "MessageVerse","[SEN_PRE] sending this literal clue", "To tell you [SEN_PRE] thinking of you","[SEN_SP] picture you lots","You're there in [SEN_POP] thoughts","Through all of the things that you do",6 ],
   [ "MessageVerse","Right now [SEN_PRE] thinking of you", "Just a moment, that's what [SEN_FUT] do","[SEN_SP] so often find","It's you on [SEN_POP] mind","Then [SEN_FUT] stop, but only for a few",6 ],
   [ "MessageVerse","The clock seems to tick so slowly", "The tock makes time ever lonely","[SEN_SP] mark off the days","And count all the ways","Until again you are beside me","true","0",7 ],
-  [ "MessageVerse","When you left [SEN_OP] [SEN_SP] had to begin it", "Counting each hour and each minute","And [SEN_SP] won't stop, [SEN_POP] dear","'Til you're standing right here","[SEN_POP] hand in your hand right in it",7 ],
+  [ "MessageVerse","When you left [SEN_OP] [SEN_SP] had to begin it", "Counting each hour and each minute","And [SEN_SP] won't stop, [SEN_POP] dear","Til you're standing right here","[SEN_POP] hand in your hand right in it",7 ],
   [ "MessageVerse","On the grand scale from one to ten", "To you, sincerest wish [SEN_SP] extend","You're a [REL] so true","In all that you do","And [SEN_SP] can't wait to see you again","true","0",7 ],
   [ "MessageVerse","Here's news that we hope makes you smile", "We'll soon walk right down that sweet aisle!","It's a marriage invite","Please join us, alright?","For [SEN_POP] wedding we'll do in real style!",8 ],
   [ "MessageVerse","Won't you join us the day we are wed?", "So you'll hear all the words that are said","You will hear the '[SEN_SP] do'","And the '[SEN_SP] love you, too'","And be after, deliciously fed",8 ],
