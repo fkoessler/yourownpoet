@@ -4,10 +4,10 @@ FactoryGirl.define do
   factory :questionnaire do
     skip_create
 
-    receiver_name "Arthur"
+    receiver_name "arthur"
     receiver_sex "male"
-    location "Paris"
-    relationship "Brother"
+    location "paris"
+    relationship "brother"
     trait_category "adventurous venturous"
     message_category "Happy Birthday"
   end

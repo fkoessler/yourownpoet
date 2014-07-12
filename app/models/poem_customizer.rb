@@ -170,6 +170,9 @@ class PoemCustomizer
     line.sub!("[SEN_PRE]", SENDER_PRONOUNS[:SEN_PRE][:singular])
     line.sub!("[SEN_PAST]", SENDER_PRONOUNS[:SEN_PAST][:singular])
 
+    Rails.logger.debug "check here"
+    Rails.logger.debug @@receiver_sex.to_sym
+
     line.sub!("[REC_SP]", RECEIVER_PRONOUNS[:REC_SP][@@receiver_sex.to_sym])
     line.sub!("[REC_OP]", RECEIVER_PRONOUNS[:REC_OP][@@receiver_sex.to_sym])
     line.sub!("[REC_POP]", RECEIVER_PRONOUNS[:REC_POP][@@receiver_sex.to_sym])
