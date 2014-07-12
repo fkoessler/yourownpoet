@@ -5,7 +5,7 @@ class PoemCustomizer
   # Define class variables that gets set when customize_poem is called from controller
   # so we have a practical way to access questionnaire data within this class
   @@receiver_name = ""
-  @@receiver_sex = "male"
+  @@receiver_sex = ""
   @@location = ""
   @@relationship = ""
 
@@ -56,6 +56,7 @@ class PoemCustomizer
     
     #First we set PoemCustomizer class variables
     @@receiver_name = questionnaire[:receiver_name]
+    @@receiver_sex = questionnaire[:receiver_sex]
     @@location = questionnaire[:location]
     @@relationship = questionnaire[:relationship]
 
@@ -169,9 +170,6 @@ class PoemCustomizer
     line.sub!("[SEN_COND]", SENDER_PRONOUNS[:SEN_COND][:singular])
     line.sub!("[SEN_PRE]", SENDER_PRONOUNS[:SEN_PRE][:singular])
     line.sub!("[SEN_PAST]", SENDER_PRONOUNS[:SEN_PAST][:singular])
-
-    Rails.logger.debug "check here"
-    Rails.logger.debug @@receiver_sex.to_sym
 
     line.sub!("[REC_SP]", RECEIVER_PRONOUNS[:REC_SP][@@receiver_sex.to_sym])
     line.sub!("[REC_OP]", RECEIVER_PRONOUNS[:REC_OP][@@receiver_sex.to_sym])
