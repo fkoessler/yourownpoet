@@ -26,4 +26,8 @@ RSpec.describe PoemCustomizer, :type => :model do
     end
   end
 
+  describe "replace_codes method" do
+    
+  end
+
 end

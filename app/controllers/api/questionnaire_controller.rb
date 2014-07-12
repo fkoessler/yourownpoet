@@ -58,6 +58,7 @@ class Api::QuestionnaireController < ApplicationController
   # ==== Attributes
   #
   # * +receiver_name+ - String containing the receiver's name
+  # * +receiver_sex+ - Integer representing the receiver's sex (1: male, 2: female)
   # * +location+ - String containing the receiver's location
   # * +relationship+ - String containing the relation to the receiver
   # * +trait+ - String containing the Trait's name
@@ -95,6 +96,6 @@ class Api::QuestionnaireController < ApplicationController
   end
 
   def questionnaire_form_params
-    params.require(:questionnaire).permit(:receiver_name, :location, :relationship, :trait_category, :message_category)
+    params.require(:questionnaire).permit(:receiver_name, :receiver_sex, :location, :relationship, :trait_category, :message_category)
   end
 end

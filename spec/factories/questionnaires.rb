@@ -5,6 +5,7 @@ FactoryGirl.define do
     skip_create
 
     receiver_name "Arthur"
+    receiver_sex "male"
     location "Paris"
     relationship "Brother"
     trait_category "adventurous venturous"

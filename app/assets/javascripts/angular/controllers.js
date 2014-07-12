@@ -69,7 +69,7 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
   $scope.isDisabled = true;
   // enable submit button if all formData fields are set
   $scope.$watchCollection('formData', function() {
-    if ($scope.formData.receiver_name && $scope.formData.location && $scope.formData.relationship && $scope.formData.trait && $scope.formData.message) {
+    if ($scope.formData.receiver_name && $scope.formData.receiver_sex && $scope.formData.location && $scope.formData.relationship && $scope.formData.trait && $scope.formData.message) {
       $scope.isDisabled = false;
     } else {
       $scope.isDisabled = true;
@@ -84,6 +84,7 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
     {"questionnaire": 
       {
        "receiver_name": $scope.formData.receiver_name,
+       "receiver_sex": $scope.formData.receiver_sex,
        "location": $scope.formData.location,
        "relationship": $scope.formData.relationship,
        "trait_category": $scope.formData.trait,
@@ -100,6 +101,7 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
     .success(function(data) {
         console.log(data);
         $scope.errorReceiverName = "";
+        $scope.errorReceiverSex = "";
         $scope.errorLocation = "";
         $scope.errorRelationship = "";
         $scope.errorTrait = "";
@@ -109,6 +111,9 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
           // if not successful, bind errors to error variables
           if (data.errors.receiver_name) {
             $scope.errorReceiverName = 'Receiver name ' + data.errors.receiver_name;
+          }
+          if (data.errors.receiver_sex) {
+            $scope.errorReceiverSex = 'Receiver sex ' + data.errors.receiver_sex;
           }
           if (data.errors.location) {
             $scope.errorLocation = 'Location ' + data.errors.location;

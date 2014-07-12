@@ -86,6 +86,21 @@ class PoemCustomizer
     return line
   end
 
+  # Private class method that gets a raw line as argument
+  # (3 choices replacements must have been made already)
+  # It replaces the codes ([RNAME], [LOC], [SEN_SP], etc)
+  # and returns the resulting line
+  # ==== Attributes
+  #
+  # * +line+ - String with codes to replace
+  #
+  # ==== Returns
+  #
+  # * +line+ - String where code replacements have been made
+  def self.replace_codes(line)
+
+  end
+
   # Counts the number of syllables in word (approximative..)
   # ==== Attributes
   #
