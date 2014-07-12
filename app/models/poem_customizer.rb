@@ -5,13 +5,46 @@ class PoemCustomizer
   # Define class variables that gets set when customize_poem is called from controller
   # so we have a practical way to access questionnaire data within this class
   @@receiver_name = ""
+  @@receiver_sex = "male"
   @@location = ""
   @@relationship = ""
+
+  # Define our sender pronouns dictionnary
+  # will be used in replace_codes, replacements based on single sender or multiple senders
+  SENDER_PRONOUNS = {
+    SEN_SP: { singular: "I", plural: "we" },
+    SEN_OP: { singular: "me", plural: "us" },
+    SEN_POP: { singular: "my", plural: "our" },
+    SEN_PEP: { singular: "mine", plural: "ours" },
+    SEN_IP: { singular: "myself", plural: "ourselves" },
+    SEN_FUT: { singular: "I'll", plural: "we'll" },
+    SEN_COND: { singular: "I'd", plural: "we'd" },
+    SEN_PRE: { singular: "I'm", plural: "we're" },
+    SEN_PAST: { singular: "I've", plural: "we've" }
+  }
+
+  # Define our receiver pronouns dictionnary
+  # will be used in replace_codes, replacements based on receiver_sex
+  RECEIVER_PRONOUNS = {
+    REC_SP: { male: "he", female: "she" },
+    REC_OP: { male: "him", female: "her" },
+    REC_POP: { male: "his", female: "her" },
+    REC_PEP: { male: "his", female: "hers" },
+    REC_IP: { male: "himself", female: "herself" },
+    REC_FUT: { male: "he'll", female: "she'll" },
+    REC_COND: { male: "he'd", female: "she'd" },
+    REC_PRE: { male: "he's", female: "she's" },
+    REC_GUY: { male: "guy", female: "gal" },
+    REC_BF: { male: "boyfriend", female: "girlfriend" },
+    REC_MAN: { male: "man", female: "woman" },
+    REC_HOST: { male: "host", female: "hostess" },
+    REC_BRO: { male: "brother", female: "sister" }
+  }
 
   # Public class method that returns a ready to display poem in a hash
   # ==== Attributes
   #
-  # * +raw_verse+ - Hash returned by VerseSelector.select_verses
+  # * +raw_verses+ - Hash returned by VerseSelector.select_verses
   # * +receiver_name+ - String
   # * +location+ - String
   # * +relationship+ - String
@@ -19,19 +52,44 @@ class PoemCustomizer
   # ==== Returns
   #
   # A hash: { title, intro: { line_one, line_two, line_three, line_four, line_five }, trait: { line_one, line_two, line_three, line_four, line_five }, message: { line_one, line_two, line_three, line_four, line_five } }
-  def self.customize_poem(raw_verse, questionnaire)
+  def self.customize_poem(raw_verses, questionnaire)
     
     #First we set PoemCustomizer class variables
     @@receiver_name = questionnaire[:receiver_name]
     @@location = questionnaire[:location]
     @@relationship = questionnaire[:relationship]
 
-    #Start customizing the raw poem
-    title = customize_line(raw_verse[:title])
-    #intro = select_intro_verse
-    #trait = select_trait_verse(trait_category_name)
-    #message = select_message_verse(message_category_name)
-    poem = { title: title }
+    # Customize raw poem
+    title = customize_line(raw_verses[:title])
+    Rails.logger.debug "raw verses"
+    Rails.logger.debug raw_verses
+    intro_verse = {
+      line_one: customize_line(raw_verses[:intro_verse]['line_one']),
+      line_two: customize_line(raw_verses[:intro_verse]['line_two']),
+      line_three: customize_line(raw_verses[:intro_verse]['line_three']),
+      line_four: customize_line(raw_verses[:intro_verse]['line_four']),
+      line_five: customize_line(raw_verses[:intro_verse]['line_five'])
+    }
+    trait_verse = {
+      line_one: customize_line(raw_verses[:trait_verse]['line_one']),
+      line_two: customize_line(raw_verses[:trait_verse]['line_two']),
+      line_three: customize_line(raw_verses[:trait_verse]['line_three']),
+      line_four: customize_line(raw_verses[:trait_verse]['line_four']),
+      line_five: customize_line(raw_verses[:trait_verse]['line_five'])
+    }
+    message_verse = {
+      line_one: customize_line(raw_verses[:message_verse]['line_one']),
+      line_two: customize_line(raw_verses[:message_verse]['line_two']),
+      line_three: customize_line(raw_verses[:message_verse]['line_three']),
+      line_four: customize_line(raw_verses[:message_verse]['line_four']),
+      line_five: customize_line(raw_verses[:message_verse]['line_five'])
+    }
+    poem = {
+      title: title,
+      intro_verse: intro_verse,
+      trait_verse: trait_verse,
+      message_verse: message_verse
+    }
   end
 
   private
@@ -68,9 +126,9 @@ class PoemCustomizer
       # Find out if we are choosing based on receiver_name, location or relationship syllables
       # if we have a three choice block without a code to replace (which should not happen)
       # we make the choice based on receiver_name's number of syllables (arbitrary choice)
-      if three_choices_string.include? "[LOC]"
+      if line.include? "[LOC]"
         syllables = count_syllables(@@location)
-      elsif three_choices_string.include? "[REL]"
+      elsif line.include? "[REL]"
         syllables = count_syllables(@@relationship)
       else
         syllables = count_syllables(@@receiver_name)
@@ -98,7 +156,35 @@ class PoemCustomizer
   #
   # * +line+ - String where code replacements have been made
   def self.replace_codes(line)
+    line.sub!("[RNAME]", @@receiver_name)
+    line.sub!("[LOC]", @@location)
+    line.sub!("[REL]", @@relationship)
 
+    line.sub!("[SEN_SP]", SENDER_PRONOUNS[:SEN_SP][:singular])
+    line.sub!("[SEN_OP]", SENDER_PRONOUNS[:SEN_OP][:singular])
+    line.sub!("[SEN_POP]", SENDER_PRONOUNS[:SEN_POP][:singular])
+    line.sub!("[SEN_PEP]", SENDER_PRONOUNS[:SEN_PEP][:singular])
+    line.sub!("[SEN_IP]", SENDER_PRONOUNS[:SEN_IP][:singular])
+    line.sub!("[SEN_FUT]", SENDER_PRONOUNS[:SEN_FUT][:singular])
+    line.sub!("[SEN_COND]", SENDER_PRONOUNS[:SEN_COND][:singular])
+    line.sub!("[SEN_PRE]", SENDER_PRONOUNS[:SEN_PRE][:singular])
+    line.sub!("[SEN_PAST]", SENDER_PRONOUNS[:SEN_PAST][:singular])
+
+    line.sub!("[REC_SP]", RECEIVER_PRONOUNS[:REC_SP][@@receiver_sex.to_sym])
+    line.sub!("[REC_OP]", RECEIVER_PRONOUNS[:REC_OP][@@receiver_sex.to_sym])
+    line.sub!("[REC_POP]", RECEIVER_PRONOUNS[:REC_POP][@@receiver_sex.to_sym])
+    line.sub!("[REC_PEP]", RECEIVER_PRONOUNS[:REC_PEP][@@receiver_sex.to_sym])
+    line.sub!("[REC_IP]", RECEIVER_PRONOUNS[:REC_IP][@@receiver_sex.to_sym])
+    line.sub!("[REC_FUT]", RECEIVER_PRONOUNS[:REC_FUT][@@receiver_sex.to_sym])
+    line.sub!("[REC_COND]", RECEIVER_PRONOUNS[:REC_COND][@@receiver_sex.to_sym])
+    line.sub!("[REC_PRE]", RECEIVER_PRONOUNS[:REC_PRE][@@receiver_sex.to_sym])
+    line.sub!("[REC_GUY]", RECEIVER_PRONOUNS[:REC_GUY][@@receiver_sex.to_sym])
+    line.sub!("[REC_BF]", RECEIVER_PRONOUNS[:REC_BF][@@receiver_sex.to_sym])
+    line.sub!("[REC_MAN]", RECEIVER_PRONOUNS[:REC_MAN][@@receiver_sex.to_sym])
+    line.sub!("[REC_HOST]", RECEIVER_PRONOUNS[:REC_HOST][@@receiver_sex.to_sym])
+    line.sub!("[REC_BRO]", RECEIVER_PRONOUNS[:REC_BRO][@@receiver_sex.to_sym])
+
+    return line
   end
 
   # Counts the number of syllables in word (approximative..)
