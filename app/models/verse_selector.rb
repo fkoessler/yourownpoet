@@ -10,7 +10,7 @@ class VerseSelector
   #
   # ==== Returns
   #
-  # A hash: { title, intro: { line_one, line_two, line_three, line_four, line_five }, trait: { line_one, line_two, line_three, line_four, line_five }, message: { line_one, line_two, line_three, line_four, line_five } }
+  # A hash: { title, intro_verse: { line_one, line_two, line_three, line_four, line_five }, trait_verse: { line_one, line_two, line_three, line_four, line_five }, message_verse: { line_one, line_two, line_three, line_four, line_five } }
   # Raises a ActiveRecord::RecordNotFound if a verse could not be found
   def self.select_verses(trait_category_name, message_category_name)
     title = get_poem_title(message_category_name).fetch("poem_title")

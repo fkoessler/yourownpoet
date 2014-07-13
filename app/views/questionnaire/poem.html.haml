@@ -1,5 +1,22 @@
 / questionnaire/poem.html.haml
 
 .poem
-  = debug(@questionnaire)
-  = debug(@poem)
+  %p=@poem[:title]
+  %p
+    %div=@poem[:intro_verse][:line_one]
+    %div=@poem[:intro_verse][:line_two]
+    %div=@poem[:intro_verse][:line_three]
+    %div=@poem[:intro_verse][:line_four]
+    %div=@poem[:intro_verse][:line_five]
+  %p
+    %div=@poem[:trait_verse][:line_one]
+    %div=@poem[:trait_verse][:line_two]
+    %div=@poem[:trait_verse][:line_three]
+    %div=@poem[:trait_verse][:line_four]
+    %div=@poem[:trait_verse][:line_five]
+  %p
+    %div=@poem[:message_verse][:line_one]
+    %div=@poem[:message_verse][:line_two]
+    %div=@poem[:message_verse][:line_three]
+    %div=@poem[:message_verse][:line_four]
+    %div=@poem[:message_verse][:line_five]
