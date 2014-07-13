@@ -13,7 +13,7 @@ intro_verse_list = [
   [ "IntroVerse","Without any further ado","[SEN_COND] like to explain who is who","In [LOC] [REC_SP] dwells","With whistles and bells","[REC_PRE] [RNAME], [SEN_POP] [REL], it's true" ],
   [ "IntroVerse","[SEN_POP] [REL], [REC_POP] place is secure","[SEN_POP] thoughts of [REC_OP], they do endure","[LOC]'s [REC_POP] homestead","It's where [REC_SP] was led","And [RNAME]'s [REC_POP] name, that's for sure" ],
   [ "IntroVerse","In [LOC] [SEN_POP] [REL] is found","And [RNAME]'s [REC_POP] name [SEN_FUT] be bound","[SEN_SP] know [REC_OP], I do","[SEN_FUT] bet my right shoe","Allow [SEN_OP] to further expound" ],
-  [ "IntroVerse","Of [RNAME] [SEN_SP] have to confess","In [LOC] [SEN_SP] makes [REC_POP] address","A {great [REL]#[REL]#[REL]} to me","Read on and you'll see","The qualities that [SEN_SP] does possess" ],
+  [ "IntroVerse","Of [RNAME] [SEN_SP] have to confess","In [LOC] [REC_SP] makes [REC_POP] address","A {great [REL]#[REL]#[REL]} to me","Read on and you'll see","The qualities that [REC_SP] does possess" ],
   [ "IntroVerse","Now [RNAME] is nobody's fool","In [LOC] [REC_SP] lives as a rule","[REC_PRE] a [REL] to me","[SEN_POP] [REL], you see","And here's why [SEN_SP] think [SEN_SP] is cool" ],
   [ "IntroVerse","So [RNAME]'s a [REC_GUY] on the go","In [LOC] [REC_PRE] seen high and low","[SEN_COND] like to define","This [REL] of mine","And here's what [SEN_SP] want you to know" ],
   [ "IntroVerse","This poem to {}that one [RNAME]#one [RNAME]#[RNAME]} is sent","These word to [REC_OP] [SEN_SP] will present","Since in [LOC] [SEN_SP] resides","That's where [SEN_SP] decides","To [SEN_POP] {true [REL]#[REL]#[REL]} these words are meant" ],
