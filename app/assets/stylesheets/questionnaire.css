@@ -7,7 +7,7 @@ body { padding-top: 20px; }
 /* form styling */
 #page-container { max-width: 780px; margin: 0 auto; }
 #status-buttons { background:#555; margin:20px auto;
-    border-radius:5px; padding: 20px; width: 80%; }
+    border-radius:5px; padding: 20px; }
 
 /* numbered buttons */
 #status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
