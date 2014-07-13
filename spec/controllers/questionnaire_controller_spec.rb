@@ -65,13 +65,21 @@ RSpec.describe QuestionnaireController, :type => :controller do
   end
 
   describe "GET 'poem'" do
-    #it "renders questionnaire/verses_not_found.html if theres an ActiveRecord::RecordNotFound exception" do
-      #verse_selector = double("VerseSelector", select_verses: ActiveRecord::RecordNotFound.new("Verses not found"))
-      #get 'poem', nil, {questionnaire: {receiver_name:"a",location:"b",relationship:"coach",trait_category:"adventurous venturous",message_category:"You hurt my feelings"}}.to_json
-      #expect(response).to render_template(:verses_not_found)
-      #VerseSelector.stub(:select_verses) { raise ActiveRecord::RecordNotFound }
-      #get 'poem', nil, {questionnaire: {receiver_name:"a",location:"b",relationship:"coach",trait_category:"adventurous venturous",message_category:"You hurt my feelings"}}
-      #expect(response).to render_template(:verses_not_found)
+    it "renders questionnaire/verses_not_found.html if session['questionnaire'] is missing" do
+      get 'poem'
+      expect(response).to render_template(:verses_not_found)
+    end
+    it "renders questionnaire/verses_not_found.html if theres an ActiveRecord::RecordNotFound exception" do
+      verse_selector = double("VerseSelector")
+      allow(verse_selector).to receive(:select_verses).and_return(ActiveRecord::RecordNotFound.new())
+      get 'poem', nil, {"questionnaire" => {"receiver_name"=> "Arthur","location"=> "Souffel","relationship"=> "friend","trait_category"=> "adventurous venturous","message_category"=> "You hurt my feelings"}.to_json}
+      expect(response).to render_template(:verses_not_found)
+    end
+    #it "renders the poem when verses found and questionnaire in session" do
+    #  verse_selector = instance_double("verse_selector")
+    #  allow(verse_selector).to receive(:select_verses).and_return({ "title" => "title", intro_verse: { "line_one" => "line1", "line_two"=> "line2", "line_three"=> "line3", "line_four"=> "line4", "line_five"=> "line5" }, trait_verse: { "line_one" => "line1", "line_two"=> "line2", "line_three"=> "line3", "line_four"=> "line4", "line_five"=> "line5" }, message_verse: { "line_one" => "line1", "line_two"=> "line2", "line_three"=> "line3", "line_four"=> "line4", "line_five"=> "line5" } })
+    #  get 'poem', nil, {"questionnaire" => {"receiver_name"=> "Arthur","location"=> "Souffel","relationship"=> "friend","trait_category"=> "adventurous venturous","message_category"=> "You hurt my feelings"}.to_json}
+    #  expect(response).to render_template(:poem)
     #end
 
   end
