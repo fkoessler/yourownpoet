@@ -1,9 +1,14 @@
 / questionnaire/trait.html.haml
 
-.form-group{"ng-controller" => "TraitsTypeaheadCtrl"}
-  %label{for: "trait"} Trait:
-  %input{trait: "trait", "ng-model" => "formData.trait", type: "text", "required" => "", name: "trait", "typeahead" => "suggestion for suggestion in traits($viewValue)", "typeahead-editable" => "false", autocomplete: "off"}
+%div.col-md-3.text-left
+  %a.btn.btn-primary{"ui-sref" => "questionnaire.relationship"}
+    Previous Step
 
-.form-group
-  %a.btn{"ui-sref" => "questionnaire.message"}
-    Next
+%div.form-container.col-md-6.text-center
+  .form-group{"ng-controller" => "TraitsTypeaheadCtrl"}
+    %label{for: "trait"} Trait:
+    %input{trait: "trait", "ng-model" => "formData.trait", type: "text", "required" => "", name: "trait", "typeahead" => "suggestion for suggestion in traits($viewValue)", "typeahead-editable" => "false", autocomplete: "off"}
+
+%div.col-md-3.text-right
+  %a.btn.btn-primary{"ui-sref" => "questionnaire.message"}
+    Next Step

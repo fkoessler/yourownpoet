@@ -2,32 +2,37 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body                            { padding-top:20px; }
+body { padding-top: 20px; }
 
 /* form styling */
-#status-buttons                { background:#2f2f2f; margin-bottom:20px;
-    border-radius:5px; padding: 20px; }
-#form-container .page-header   { background:#151515; margin:0; padding:30px; 
-    border-top-left-radius:5px; border-top-right-radius:5px; }
+#page-container { max-width: 780px; margin: 0 auto; }
+#status-buttons { background:#555; margin:20px auto;
+    border-radius:5px; padding: 20px; width: 80%; }
 
 /* numbered buttons */
-#status-buttons                 {  }
 #status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
 #status-buttons a:hover         { text-decoration:none; }
 
 /* we will style the span as the circled number */
-#status-buttons span            { background:#080808; display:block; height:30px; margin:0 auto 10px; padding-top:5px; width:30px; 
+#status-buttons span            { background:#333; display:block; height:30px; margin:0 auto 10px; padding-top:5px; width:30px; 
     border-radius:50%; }
 
 /* active buttons turn light green-blue*/
-#status-buttons a.active span   { background:#00BC8C; }
+#status-buttons a.active span   { background:#AD1D28; }
+
+.form-container { padding: 8px 0; }
+
+label { margin-right: 5px; }
+input[type="radio"] { margin: 4px 5px 0 5px; }
+.submit-button { margin-top: 20px; }
+ul.dropdown-menu > li > a { cursor: pointer; }
 
 /* ANIMATION STYLINGS
 ============================================================================= */
 #signup-form            { position:relative; min-height:300px; overflow:hidden; padding:30px; }
 #form-views             { width:auto;}
 #questionnaire-form     { padding: 20px; }
-.form-view-container    { height: 50px; }
+.form-view-container    { height: 150px;}
 
 /* basic styling for entering and leaving */
 /* left and right added to ensure full width */
@@ -76,3 +81,6 @@ body                            { padding-top:20px; }
   from  { -webkit-transform:translateX(200%); }
   to    { -webkit-transform: translateX(0); }
 }
+
+.poem { text-align: center; margin: 50px auto; }
+footer { position: absolute; width: 500px; bottom: 0px; left: 50%; margin: 15px -250px; text-align: center; }

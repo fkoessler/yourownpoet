@@ -1,5 +1,12 @@
 / questionnaire/message.html.haml
 
-.form-group{"ng-controller" => "MessagesTypeaheadCtrl"}
-  %label{for: "message"} Message
-  %input{message: "message", "ng-model" => "formData.message", type: "text", "required" => "", name: "message", "typeahead" => "suggestion for suggestion in messages($viewValue)", "typeahead-editable" => "false", autocomplete: "off"}
+%div.col-md-3.text-left
+  %a.btn.btn-primary{"ui-sref" => "questionnaire.trait"}
+    Previous Step
+
+%div.form-container.col-md-6.text-center
+  .form-group{"ng-controller" => "MessagesTypeaheadCtrl"}
+    %label{for: "message"} Message
+    %input{message: "message", "ng-model" => "formData.message", type: "text", "required" => "", name: "message", "typeahead" => "suggestion for suggestion in messages($viewValue)", "typeahead-editable" => "false", autocomplete: "off"}
+
+%div.col-md-3.text-right

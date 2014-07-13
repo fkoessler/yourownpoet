@@ -1,4 +1,4 @@
-#form-container
+#page-container
   / the links to our nested states using relative paths
   / add the active class if the state matches our ui-sref
   #status-buttons.text-center
@@ -26,12 +26,16 @@
       #form-views{"ui-view" => ""}
 
     / show our formData as it is being typed
-    %pre {{ formData }}
+    /%pre {{ formData }}
+
     /show validation errors here
-    %p {{ errorReceiverName }}
-    %p {{ errorLocation }}
-    %p {{ errorRelationship }}
-    %p {{ errorTrait }}
-    %p {{ errorMessage }}
+
+    %p.bg-danger {{ errorReceiverName }}
+    %p.bg-danger {{ errorLocation }}
+    %p.bg-danger {{ errorRelationship }}
+    %p.bg-danger {{ errorTrait }}
+    %p.bg-danger {{ errorMessage }}
+
     = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
-    %button.btn{type: "submit", "ng-disabled" => "isDisabled"} Submit
+    %div.text-center.submit-button
+      %button.btn.btn-success{type: "submit", "ng-disabled" => "isDisabled"} Write the Poem

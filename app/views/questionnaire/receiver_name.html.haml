@@ -1,13 +1,16 @@
 / questionnaire/receiver_name.html.haml
 
-.form-group
-  %label{for: "receiver_name"} Receiver Name:
-  %input{receiver_name: "receiver_name", "ng-model" => "formData.receiver_name", type: "text", "required" => "", name: "receiver_name"}
-.form-group
-  %label{for: "receiver_sex"} Receiver Sex:
-  %input{receiver_sex: "receiver_sex", "ng-model" => "formData.receiver_sex", type: "radio", "required" => "", name: "receiver_sex", value: "male"}Male
-  %input{receiver_sex: "receiver_sex", "ng-model" => "formData.receiver_sex", type: "radio", "required" => "", name: "receiver_sex", value: "female"}Female
+%div.col-md-3.text-left
 
-.form-group
-  %a.btn{"ui-sref" => "questionnaire.location"}
-    Next
+%div.form-container.col-md-6.text-center
+  .form-group
+    %label{for: "receiver_name"} Receiver Name:
+    %input{receiver_name: "receiver_name", "ng-model" => "formData.receiver_name", type: "text", "required" => "", name: "receiver_name"}
+  .form-group
+    %label{for: "receiver_sex"} Receiver Sex:
+    %input{receiver_sex: "receiver_sex", "ng-model" => "formData.receiver_sex", type: "radio", "required" => "", name: "receiver_sex", value: "male"}Male
+    %input{receiver_sex: "receiver_sex", "ng-model" => "formData.receiver_sex", type: "radio", "required" => "", name: "receiver_sex", value: "female"}Female
+
+%div.col-md-3.text-right
+  %a.btn.btn-primary{"ui-sref" => "questionnaire.location"}
+    Next Step

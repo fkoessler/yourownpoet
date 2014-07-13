@@ -1,8 +1,14 @@
 / questionnaire/location.html.haml
 
-.form-group
-  %label{for: "location"} Location:
-  %input{location: "location", "ng-model" => "formData.location", type: "text", "required" => "", name: "location"}
-.form-group
-  %a.btn{"ui-sref" => "questionnaire.relationship"}
-    Next
+%div.col-md-3.text-left
+  %a.btn.btn-primary{"ui-sref" => "questionnaire.receiver_name"}
+    Previous Step
+
+%div.form-container.col-md-6.text-center
+  .form-group
+    %label{for: "location"} Location:
+    %input{location: "location", "ng-model" => "formData.location", type: "text", "required" => "", name: "location"}
+
+%div.col-md-3.text-right
+  %a.btn.btn-primary{"ui-sref" => "questionnaire.relationship"}
+    Next Step

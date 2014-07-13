@@ -1,9 +1,14 @@
 / questionnaire/relationship.html.haml
 
-.form-group{"ng-controller" => "RelationshipsTypeaheadCtrl"}
-  %label{for: "relationship"} Relationship:
-  %input{relationship: "relationship", "ng-model" => "formData.relationship", type: "text", "required" => "", name: "relationship", "typeahead" => "suggestion for suggestion in relationships($viewValue)", "typeahead-editable" => "false", autocomplete: "off"}
+%div.col-md-3.text-left
+  %a.btn.btn-primary{"ui-sref" => "questionnaire.location"}
+    Previous Step
 
-.form-group
-  %a.btn{"ui-sref" => "questionnaire.trait"}
-    Next
+%div.form-container.col-md-6.text-center
+  .form-group{"ng-controller" => "RelationshipsTypeaheadCtrl"}
+    %label{for: "relationship"} Relationship:
+    %input{relationship: "relationship", "ng-model" => "formData.relationship", type: "text", "required" => "", name: "relationship", "typeahead" => "suggestion for suggestion in relationships($viewValue)", "typeahead-editable" => "false", autocomplete: "off"}
+
+%div.col-md-3.text-right
+  %a.btn.btn-primary{"ui-sref" => "questionnaire.trait"}
+    Next Step
