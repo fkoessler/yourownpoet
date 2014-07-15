@@ -16,9 +16,6 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'rails/all'
-#Commented out this require because it is already required in rails_helper.rb
-#require 'rspec/rails'
-#require 'capybara/rails'
 require 'capybara/rspec'
 require 'factory_girl_rails'
 require 'shoulda/matchers'

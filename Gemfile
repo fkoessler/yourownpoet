@@ -46,11 +46,11 @@ gem 'haml-rails', :group => :development
 # Test gems
 # Put factory)girl in development group so that test scaffolds are generated properly
 group :development, :test do
-  gem 'factory_girl_rails', require: false
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'factory_girl_rails'
 end
 group :test do
-  gem 'rspec-rails', '~> 3.0.1', require: false
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers'
   gem 'capybara'
 end
 
