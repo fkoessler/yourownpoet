@@ -55,3 +55,6 @@ group :test do
 end
 
 gem 'angularjs-rails'
+group :development, :test do
+  gem "jasmine", github: "pivotal/jasmine-gem"
+end
