@@ -1,10 +1,7 @@
-// create our angular app and inject ngAnimate and ui-router 
-// =============================================================================
-angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
 
 // configuring our routes 
 // =============================================================================
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+angular.module('thePoetApp').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   
   $stateProvider
   
@@ -62,7 +59,7 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
 
 // our controller for the form
 // =============================================================================
-.controller('questionnaireCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
+angular.module('thePoetApp').controller('questionnaireCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
   // we will store all of our form data in this object
   $scope.formData = {};
   // submit button disabled by default
@@ -134,33 +131,4 @@ angular.module('questionnaireApp', ['ngAnimate', 'ui.router', 'ui.bootstrap'])
         }
     });
   }
-
 }]);
-
-
-function RelationshipsTypeaheadCtrl($scope, $http, limitToFilter) {
-  $scope.relationships = function(relationshipName) {
-    return $http.get("/api/questionnaire/relationship?search="+relationshipName).then(function(response){
-      return limitToFilter(response.data, 15);
-    });
-  };
-}
-RelationshipsTypeaheadCtrl.$inject = ['$scope', '$http', 'limitToFilter'];
-
-function TraitsTypeaheadCtrl($scope, $http, limitToFilter) {
-  $scope.traits = function(traitName) {
-    return $http.get("/api/questionnaire/trait?search="+traitName).then(function(response){
-      return limitToFilter(response.data, 15);
-    });
-  };
-}
-TraitsTypeaheadCtrl.$inject = ['$scope', '$http', 'limitToFilter'];
-
-function MessagesTypeaheadCtrl($scope, $http, limitToFilter) {
-  $scope.messages = function(messageName) {
-    return $http.get("/api/questionnaire/message?search="+messageName).then(function(response){
-      return limitToFilter(response.data, 15);
-    });
-  };
-}
-MessagesTypeaheadCtrl.$inject = ['$scope', '$http', 'limitToFilter'];
