@@ -9,6 +9,8 @@ class Relationship < ActiveRecord::Base
   validates :name, uniqueness: true
   validates_inclusion_of :sex, :category, in: 0..2
 
+  scope :name_like, ->(name) { where("LOWER(name) like ?", name.downcase).pluck(:name) }
+
   # The Relationship::CATEGORY constant holds the integer/string conversion for the Relationship's type
   #
   # other = 0, family = 1, romance = 2

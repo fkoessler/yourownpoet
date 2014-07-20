@@ -8,6 +8,8 @@
 class Category < ActiveRecord::Base
   validates :name, presence: true
   validates_inclusion_of :sex, in: 0..2
+
+  scope :name_like, ->(name) { where("LOWER(name) like ?", name.downcase).pluck(:name) }
   
   # The Category::SEX constant holds the integer/string conversion for the sex field:
   #
