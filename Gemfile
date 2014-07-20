@@ -56,5 +56,6 @@ end
 
 gem 'angularjs-rails'
 group :development, :test do
-  gem "jasmine", github: "pivotal/jasmine-gem"
+  #gem "jasmine", github: "pivotal/jasmine-gem"
+  gem 'protractor-rails'
 end
