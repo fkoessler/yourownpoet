@@ -1,7 +1,8 @@
 # API controller in charge of CRUD operations on Verses
 #
 # Responds with json
-class Api::VersesController < ApplicationController
+module API
+class VersesController < ApplicationController
   
   protect_from_forgery with: :null_session
   before_action :set_verse, only: [:show, :edit, :update, :destroy]
@@ -71,4 +72,5 @@ class Api::VersesController < ApplicationController
     def verse_params
       params.require(:verse).permit(:line_one, :line_two, :line_three, :line_four, :line_five, :active, :sex)
     end
+end
 end

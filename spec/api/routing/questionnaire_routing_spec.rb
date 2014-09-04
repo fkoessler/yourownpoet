@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::QuestionnaireController, :type => :routing do
+RSpec.describe API::QuestionnaireController, :type => :routing do
   describe "routing" do
     it "routes to #relationship" do
       expect(:get => "/api/questionnaire/relationship").to route_to("api/questionnaire#relationship", :format => "json")

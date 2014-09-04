@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::VersesController, :type => :routing do
+RSpec.describe API::VersesController, :type => :routing do
   describe "routing" do
 
     it "routes to #index" do

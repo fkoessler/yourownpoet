@@ -1,7 +1,8 @@
 # API controller in charge of the questionnaire:
 #
 # Responds with json
-class Api::QuestionnaireController < ApplicationController
+module API
+class QuestionnaireController < ApplicationController
   
   respond_to :json
 
@@ -100,4 +101,5 @@ class Api::QuestionnaireController < ApplicationController
   def questionnaire_form_params
     params.require(:questionnaire).permit(:receiver_name, :receiver_sex, :location, :relationship, :trait_category, :message_category)
   end
+end
 end
