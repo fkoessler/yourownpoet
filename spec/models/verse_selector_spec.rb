@@ -3,17 +3,14 @@ require 'rails_helper'
 RSpec.describe VerseSelector, :type => :model do
 
   context "verses missing in database" do
-
     it "raises an exception" do
       expect { VerseSelector.select_verses('appreciative grateful thankful', 'Be my girlfriend') }.to raise_exception
     end
-
   end
 
   context "verses present in database" do
 
     before(:each) do
-
       #seed the test database
       create(:intro_verse_one)
       create(:intro_verse_two)
@@ -35,15 +32,15 @@ RSpec.describe VerseSelector, :type => :model do
       category = create(:message_category_star)
       create(:message_verse_one, category: category)
       category = create(:message_category_congratulations)
-      create(:message_verse_one, category: category)
+      create(:message_verse_two, category: category)
       category = create(:message_category_girlfriend)
-      create(:message_verse_one, category: category)
+      create(:message_verse_three, category: category)
       category = category = create(:message_category_get_well)
       create(:message_verse_one, category: category)
       category = create(:message_category_miss_you)
-      create(:message_verse_one, category: category)
+      create(:message_verse_two, category: category)
       category = create(:message_category_wedding)
-      create(:message_verse_one, category: category)
+      create(:message_verse_three, category: category)
     end
 
     let(:raw_poem) { VerseSelector.select_verses('appreciative grateful thankful', 'Be my girlfriend') }
