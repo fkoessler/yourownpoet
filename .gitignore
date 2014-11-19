@@ -24,3 +24,6 @@ backlog
 
 # Ignore documentation
 /doc
+
+# Ignore my todo.txt file
+/todo.txt
