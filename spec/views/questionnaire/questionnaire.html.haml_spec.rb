@@ -7,11 +7,11 @@ RSpec.describe "questionnaire/questionnaire.html.haml", :type => :view do
   end
 
   it "displays navigation buttons" do
-    expect(rendered).to have_selector("a[ui-sref='.receiver_name']")
-    expect(rendered).to have_selector("a[ui-sref='.location']")
-    expect(rendered).to have_selector("a[ui-sref='.relationship']")
-    expect(rendered).to have_selector("a[ui-sref='.trait']")
-    expect(rendered).to have_selector("a[ui-sref='.message']")
+    expect(rendered).to have_selector("a[ui-sref='questionnaire.receiver_name']")
+    expect(rendered).to have_selector("a[ui-sref='questionnaire.location']")
+    expect(rendered).to have_selector("a[ui-sref='questionnaire.relationship']")
+    expect(rendered).to have_selector("a[ui-sref='questionnaire.trait']")
+    expect(rendered).to have_selector("a[ui-sref='questionnaire.message']")
   end
 
   it "displays the container div for angular views" do

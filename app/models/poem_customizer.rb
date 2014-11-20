@@ -45,25 +45,21 @@ class PoemCustomizer
   # ==== Attributes
   #
   # * +raw_verses+ - Hash returned by VerseSelector.select_verses
-  # * +receiver_name+ - String
-  # * +location+ - String
-  # * +relationship+ - String
+  # * +questionnaire+ - a Questionnaire Object
   #
   # ==== Returns
   #
   # A hash: { title, intro: { line_one, line_two, line_three, line_four, line_five }, trait: { line_one, line_two, line_three, line_four, line_five }, message: { line_one, line_two, line_three, line_four, line_five } }
   def self.customize_poem(raw_verses, questionnaire)
-    
+
     #First we set PoemCustomizer class variables
-    @@receiver_name = questionnaire[:receiver_name]
-    @@receiver_sex = questionnaire[:receiver_sex]
-    @@location = questionnaire[:location]
-    @@relationship = questionnaire[:relationship]
+    @@receiver_name = questionnaire.receiver_name
+    @@receiver_sex = questionnaire.receiver_sex
+    @@location = questionnaire.location
+    @@relationship = questionnaire.relationship
 
     # Customize raw poem
     title = customize_line(raw_verses[:title])
-    Rails.logger.debug "raw verses"
-    Rails.logger.debug raw_verses
     intro_verse = {
       line_one: customize_line(raw_verses[:intro_verse]['line_one']),
       line_two: customize_line(raw_verses[:intro_verse]['line_two']),

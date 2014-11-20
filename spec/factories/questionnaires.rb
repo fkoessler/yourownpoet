@@ -10,6 +10,8 @@ FactoryGirl.define do
     relationship "brother"
     trait_category "adventurous venturous"
     message_category "Happy Birthday"
+
+    initialize_with { new( {"receiver_name" => receiver_name, "receiver_sex" => receiver_sex, "location" => location, "relationship" => relationship, "trait_category" => trait_category, "message_category" => message_category }) }
   end
 
 end

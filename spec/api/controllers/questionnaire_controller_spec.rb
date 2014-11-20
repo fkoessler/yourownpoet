@@ -112,5 +112,40 @@ RSpec.describe API::QuestionnaireController, :type => :controller do
     end
   end
 
+  describe "Post 'poem'" do
+    it "returns an error in JSON if theres an ActiveRecord::RecordNotFound exception" do
+      allow(VerseSelector).to receive(:select_verses).and_raise(ActiveRecord::RecordNotFound.new())
+      post :poem, questionnaire: {receiver_name: "Arthur", receiver_sex: "male", location: "Souffel",relationship: "friend",trait_category: "adventurous venturous",message_category: "You hurt my feelings"}
+      expect(response.header['Content-Type']).to include 'application/json'
+      parsed_body = JSON.parse(response.body)
+      expect(parsed_body["success"]).to eq(false)
+      expect(parsed_body["errors"]["error_text"]).to eq("Sorry, a problem occured and the poem couldn't be built. Please try again.")
+    end
+    it "returns an error in JSON if theres an KeyError exception" do
+      allow(VerseSelector).to receive(:select_verses).and_raise(KeyError.new())
+      post :poem, questionnaire: {receiver_name: "Arthur", receiver_sex: "male", location: "Souffel", relationship: "friend", trait_category: "adventurous venturous", message_category: "You hurt my feelings"}
+      expect(response.header['Content-Type']).to include 'application/json'
+      parsed_body = JSON.parse(response.body)
+      expect(parsed_body["success"]).to eq(false)
+      expect(parsed_body["errors"]["error_text"]).to eq("Sorry, a problem occured and the poem couldn't be built. Please try again.")
+    end
+    it "renders an error in JSON if the questionnaire given as input misses some element" do
+      post :poem, questionnaire: {receiver_name: "Arthur", receiver_sex: "male", location: "Souffel", trait_category: "adventurous venturous", message_category: "You hurt my feelings"}
+      expect(response.header['Content-Type']).to include 'application/json'
+      parsed_body = JSON.parse(response.body)
+      expect(parsed_body["success"]).to eq(false)
+      expect(parsed_body["errors"]["relationship"]).to eq(["can't be blank"])
+    end
+    it "renders a poem when the questionnaire parameters is correct" do
+      allow(VerseSelector).to receive(:select_verses).and_return({title: "Poem title", intro_verse: {"line_one" => "Intro line 1", "line_two" => "Intro line 2", "line_three" => "Intro line 3", "line_four" => "Intro line 4", "line_five" => "Intro line 5"}, trait_verse: {"line_one" => "Trait line 1", "line_two" => "Trait line 2", "line_three" => "Trait line 3", "line_four" => "Trait line 4", "line_five" => "Trait line 5"}, message_verse: {"line_one" => "Message line 1", "line_two" => "Message line 2", "line_three" => "Message line 3", "line_four" => "Message line 4", "line_five" => "Message line 5"}})
+      post :poem, questionnaire: {receiver_name: "Arthur", receiver_sex: "male", location: "Souffel", relationship: "friend", trait_category: "adventurous venturous", message_category: "You hurt my feelings"}
+      expect(response.header['Content-Type']).to include 'application/json'
+      parsed_body = JSON.parse(response.body)
+      expect(parsed_body["success"]).to eq(true)
+      expect(parsed_body["poem"]).to include("title", "intro_verse", "trait_verse", "message_verse")
+    end
+
+  end
+
 
 end

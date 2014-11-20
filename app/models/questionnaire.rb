@@ -1,6 +1,6 @@
 # This class is used to store and validate the answers to the questionnary
 class Questionnaire
-  
+
   attr_accessor :receiver_name, :receiver_sex, :location, :relationship, :trait_category, :message_category
 
   include ActiveModel::Validations
@@ -11,9 +11,9 @@ class Questionnaire
 
   # We populate our Questionnaire attributes on object instanciation by passing it a hash as argument
   def initialize(args = {})
-    @receiver_name = args["receiver_name"].capitalize! if args.has_key?("receiver_name")
+    @receiver_name = args["receiver_name"].capitalize
     @receiver_sex = args["receiver_sex"]
-    @location = args["location"].capitalize! if args.has_key?("location")
+    @location = args["location"].capitalize
     @relationship = args["relationship"]
     @trait_category = args["trait_category"]
     @message_category = args["message_category"]

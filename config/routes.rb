@@ -4,14 +4,8 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
 
-  # routes that return questionnaire forms
+  # routes that returns the questionnaire form layout
   get 'questionnaire/questionnaire'
-  get 'questionnaire/receiver_name'
-  get 'questionnaire/location'
-  get 'questionnaire/relationship'
-  get 'questionnaire/trait'
-  get 'questionnaire/message'
-  get 'questionnaire/poem'
 
   # verse api routes
   namespace :api, :defaults => { :format => 'json' } do
@@ -19,10 +13,10 @@ Rails.application.routes.draw do
     get 'questionnaire/relationship'
     get 'questionnaire/trait'
     get 'questionnaire/message'
-    post 'questionnaire/save_form'
+    post 'questionnaire/poem'
   end
 
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

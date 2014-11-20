@@ -2,19 +2,19 @@
   / the links to our nested states using relative paths
   / add the active class if the state matches our ui-sref
   #status-buttons.text-center
-    %a{"ui-sref" => ".receiver_name", "ui-sref-active" => "active"}
+    %a{"ui-sref" => "questionnaire.receiver_name", "ui-sref-active" => "active"}
       %span 1
       Receiver Name
-    %a{"ui-sref" => ".location", "ui-sref-active" => "active"}
+    %a{"ui-sref" => "questionnaire.location", "ui-sref-active" => "active"}
       %span 2
       Location
-    %a{"ui-sref" => ".relationship", "ui-sref-active" => "active"}
+    %a{"ui-sref" => "questionnaire.relationship", "ui-sref-active" => "active"}
       %span 3
       Relationship
-    %a{"ui-sref" => ".trait", "ui-sref-active" => "active"}
+    %a{"ui-sref" => "questionnaire.trait", "ui-sref-active" => "active"}
       %span 4
       Trait
-    %a{"ui-sref" => ".message", "ui-sref-active" => "active"}
+    %a{"ui-sref" => "questionnaire.message", "ui-sref-active" => "active"}
       %span 5
       Message
 
@@ -26,7 +26,7 @@
       #form-views{"ui-view" => ""}
 
     / show our formData as it is being typed
-    /%pre {{ formData }}
+    / %pre {{ formData }}
 
     /show validation errors here
 
